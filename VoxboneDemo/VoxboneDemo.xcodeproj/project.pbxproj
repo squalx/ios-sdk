@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27F585E4196552EDBBB7D015 /* Pods_VoxboneDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */; };
+		CA4949C51E718F9C00592D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4949C31E718F9C00592D95 /* LaunchScreen.storyboard */; };
+		CA4949C61E718F9C00592D95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4949C41E718F9C00592D95 /* Main.storyboard */; };
+		CA4949CC1E718FAF00592D95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4949CA1E718FAF00592D95 /* ViewController.swift */; };
+		CA4949CF1E718FC300592D95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4949CE1E718FC300592D95 /* AppDelegate.swift */; };
+		CADF6A8B1E6B2F4E00FDDB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */; };
+		CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoxboneDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B42879001D865A0A39D2935 /* Pods-VoxboneDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoxboneDemo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo.release.xcconfig"; sourceTree = "<group>"; };
+		CA4949C31E718F9C00592D95 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Storyboards/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CA4949C41E718F9C00592D95 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
+		CA4949CA1E718FAF00592D95 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CA4949CE1E718FC300592D95 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CADF6A801E6B2F4E00FDDB45 /* VoxboneDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoxboneDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CADF6A961E6B346000FDDB45 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VoxboneSDK.framework; path = "../../../../Users/jero/Library/Developer/Xcode/DerivedData/Voxbone-cbaopszigjhtnybqahcxkaujnkdi/Build/Products/Debug-iphoneos/VoxboneSDK.framework"; sourceTree = "<group>"; };
+		CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VoxboneSDK.framework; sourceTree = "<group>"; };
+		EE18FAB2C312AA8DF468C1A7 /* Pods-VoxboneDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoxboneDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CADF6A7D1E6B2F4E00FDDB45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */,
+				27F585E4196552EDBBB7D015 /* Pods_VoxboneDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA207B130142BC30432C5265 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE18FAB2C312AA8DF468C1A7 /* Pods-VoxboneDemo.debug.xcconfig */,
+				7B42879001D865A0A39D2935 /* Pods-VoxboneDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA4949C11E718F4600592D95 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CA4949CD1E718FC300592D95 /* AppDelegate */,
+				CA4949C91E718FAF00592D95 /* ViewControllers */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		CA4949C21E718F4C00592D95 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CA4949C31E718F9C00592D95 /* LaunchScreen.storyboard */,
+				CA4949C41E718F9C00592D95 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		CA4949C91E718FAF00592D95 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA4949CA1E718FAF00592D95 /* ViewController.swift */,
+			);
+			name = ViewControllers;
+			path = Sources/ViewControllers;
+			sourceTree = "<group>";
+		};
+		CA4949CD1E718FC300592D95 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				CA4949CE1E718FC300592D95 /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			path = Sources/AppDelegate;
+			sourceTree = "<group>";
+		};
+		CADF6A771E6B2F4E00FDDB45 = {
+			isa = PBXGroup;
+			children = (
+				CADF6A821E6B2F4E00FDDB45 /* VoxboneDemo */,
+				CADF6A811E6B2F4E00FDDB45 /* Products */,
+				CADF6A951E6B346000FDDB45 /* Frameworks */,
+				AA207B130142BC30432C5265 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		CADF6A811E6B2F4E00FDDB45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CADF6A801E6B2F4E00FDDB45 /* VoxboneDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CADF6A821E6B2F4E00FDDB45 /* VoxboneDemo */ = {
+			isa = PBXGroup;
+			children = (
+				CA4949C11E718F4600592D95 /* Sources */,
+				CA4949C21E718F4C00592D95 /* Storyboards */,
+				CAF065F41E6EBDCE0056CC51 /* VoxboneSDK */,
+				CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */,
+				CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */,
+			);
+			path = VoxboneDemo;
+			sourceTree = "<group>";
+		};
+		CADF6A951E6B346000FDDB45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CADF6A961E6B346000FDDB45 /* VoxboneSDK.framework */,
+				4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAF065F41E6EBDCE0056CC51 /* VoxboneSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */,
+			);
+			path = VoxboneSDK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CADF6A7F1E6B2F4E00FDDB45 /* VoxboneDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CADF6A921E6B2F4E00FDDB45 /* Build configuration list for PBXNativeTarget "VoxboneDemo" */;
+			buildPhases = (
+				DB034E5335B8CF084E999324 /* [CP] Check Pods Manifest.lock */,
+				CADF6A7C1E6B2F4E00FDDB45 /* Sources */,
+				CADF6A7D1E6B2F4E00FDDB45 /* Frameworks */,
+				CADF6A7E1E6B2F4E00FDDB45 /* Resources */,
+				31F4AC15CC5BA5D71BD874E7 /* [CP] Embed Pods Frameworks */,
+				2DF1AE80AA58D06575097172 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VoxboneDemo;
+			productName = VoxboneDemo;
+			productReference = CADF6A801E6B2F4E00FDDB45 /* VoxboneDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CADF6A781E6B2F4E00FDDB45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Voxbone;
+				TargetAttributes = {
+					CADF6A7F1E6B2F4E00FDDB45 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = B27972CSZ6;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CADF6A7B1E6B2F4E00FDDB45 /* Build configuration list for PBXProject "VoxboneDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CADF6A771E6B2F4E00FDDB45;
+			productRefGroup = CADF6A811E6B2F4E00FDDB45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CADF6A7F1E6B2F4E00FDDB45 /* VoxboneDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CADF6A7E1E6B2F4E00FDDB45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA4949C61E718F9C00592D95 /* Main.storyboard in Resources */,
+				CADF6A8B1E6B2F4E00FDDB45 /* Assets.xcassets in Resources */,
+				CA4949C51E718F9C00592D95 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DF1AE80AA58D06575097172 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31F4AC15CC5BA5D71BD874E7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB034E5335B8CF084E999324 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CADF6A7C1E6B2F4E00FDDB45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA4949CF1E718FC300592D95 /* AppDelegate.swift in Sources */,
+				CA4949CC1E718FAF00592D95 /* ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CADF6A901E6B2F4E00FDDB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CADF6A911E6B2F4E00FDDB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CADF6A931E6B2F4E00FDDB45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE18FAB2C312AA8DF468C1A7 /* Pods-VoxboneDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B27972CSZ6;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VoxboneDemo/VoxboneSDK",
+					"$(PROJECT_DIR)/VoxboneDemo/VoxImplant",
+				);
+				INFOPLIST_FILE = VoxboneDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.voxbone.VoxboneDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CADF6A941E6B2F4E00FDDB45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B42879001D865A0A39D2935 /* Pods-VoxboneDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B27972CSZ6;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VoxboneDemo/VoxboneSDK",
+					"$(PROJECT_DIR)/VoxboneDemo/VoxImplant",
+				);
+				INFOPLIST_FILE = VoxboneDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.voxbone.VoxboneDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CADF6A7B1E6B2F4E00FDDB45 /* Build configuration list for PBXProject "VoxboneDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CADF6A901E6B2F4E00FDDB45 /* Debug */,
+				CADF6A911E6B2F4E00FDDB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CADF6A921E6B2F4E00FDDB45 /* Build configuration list for PBXNativeTarget "VoxboneDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CADF6A931E6B2F4E00FDDB45 /* Debug */,
+				CADF6A941E6B2F4E00FDDB45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CADF6A781E6B2F4E00FDDB45 /* Project object */;
+}

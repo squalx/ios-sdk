@@ -11,3 +11,8 @@ target 'VoxboneSDK' do
     project 'VoxboneSDK/VoxboneSDK.xcodeproj'
     pod 'VoxImplantSDK'
 end
+
+target 'VoxboneDemo' do
+    project 'VoxboneDemo/VoxboneDemo.xcodeproj'
+    pod 'VoxImplantSDK'
+end

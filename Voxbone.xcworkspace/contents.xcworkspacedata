@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:VoxboneDemo/VoxboneDemo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:VoxboneSDK/VoxboneSDK.xcodeproj">
    </FileRef>
    <FileRef

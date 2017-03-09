@@ -1,0 +1,10 @@
+framework module VoxboneSDK {
+  umbrella header "VoxboneSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module VoxboneSDK.Swift {
+    header "VoxboneSDK-Swift.h"
+}
