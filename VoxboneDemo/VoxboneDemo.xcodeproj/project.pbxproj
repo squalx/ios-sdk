@@ -363,7 +363,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE18FAB2C312AA8DF468C1A7 /* Pods-VoxboneDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				DEVELOPMENT_TEAM = B27972CSZ6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -383,7 +385,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B42879001D865A0A39D2935 /* Pods-VoxboneDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				DEVELOPMENT_TEAM = B27972CSZ6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

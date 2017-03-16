@@ -116,34 +116,69 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
-@import VoxImplant;
 @import Foundation;
+@import VoxImplant;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
-@protocol VoxImplantDelegate;
+@protocol VoxboneDelegate;
 
 SWIFT_CLASS("_TtC10VoxboneSDK9VBWrapper")
 @interface VBWrapper : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) VBWrapper * _Nonnull shared;)
 + (VBWrapper * _Nonnull)shared;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (void)setLogLevel:(enum VoxImplantLogLevel)logLevel;
-- (id <VoxImplantDelegate> _Null_unspecified)getVoxDelegate;
+- (void)setVoxboneDelegateWithDelegate:(id <VoxboneDelegate> _Null_unspecified)delegate;
+- (id <VoxboneDelegate> _Null_unspecified)getVoxboneDelegate;
 - (void)connect;
 - (void)connect:(BOOL)connectivityCheck;
 - (void)connectTo:(NSString * _Null_unspecified)host;
 - (void)closeConnection;
+- (void)loginWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
+- (void)loginWithUsername:(NSString * _Null_unspecified)user andOneTimeKey:(NSString * _Null_unspecified)hash;
+- (void)loginWithUsername:(NSString * _Null_unspecified)user andToken:(NSString * _Null_unspecified)token;
+- (void)refreshTokenWithUsername:(NSString * _Null_unspecified)user andToken:(NSString * _Null_unspecified)token;
+- (void)requestOneTimeKeyWithUsername:(NSString * _Null_unspecified)user;
 - (NSString * _Null_unspecified)createCall:(NSString * _Null_unspecified)to withVideo:(BOOL)video andCustomData:(NSString * _Null_unspecified)customData;
 - (BOOL)startCall:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (BOOL)attachAudioTo:(NSString * _Null_unspecified)callId;
 - (BOOL)disconnectCall:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)declineCall:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)answerCall:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)sendDTMF:(NSString * _Null_unspecified)callId digit:(int32_t)digit;
+- (void)sendMessage:(NSString * _Null_unspecified)callId withText:(NSString * _Null_unspecified)text andHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)sendInfo:(NSString * _Null_unspecified)callId withType:(NSString * _Null_unspecified)mimeType content:(NSString * _Null_unspecified)content andHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)setMute:(BOOL)b;
 - (BOOL)setUseLoudspeaker:(BOOL)b;
 - (NSTimeInterval)getCallDuration:(NSString * _Null_unspecified)callId;
+@end
+
+@class NSNumber;
+
+@interface VBWrapper (SWIFT_EXTENSION(VoxboneSDK)) <VoxImplantDelegate>
+- (void)onLoginSuccessfulWithDisplayName:(NSString * _Null_unspecified)displayName andAuthParams:(NSDictionary * _Null_unspecified)authParams;
+- (void)onLoginFailedWithErrorCode:(NSNumber * _Null_unspecified)errorCode;
+- (void)onOneTimeKeyGenerated:(NSString * _Null_unspecified)key;
+- (void)onRefreshTokenFailed:(NSNumber * _Null_unspecified)errorCode;
+- (void)onRefreshTokenSuccess:(NSDictionary * _Null_unspecified)authParams;
+- (void)onConnectionSuccessful;
+- (void)onConnectionClosed;
+- (void)onConnectionFailedWithError:(NSString * _Null_unspecified)reason;
+@end
+
+
+SWIFT_PROTOCOL("_TtP10VoxboneSDK15VoxboneDelegate_")
+@protocol VoxboneDelegate <NSObject>
+@optional
+- (void)onLoginSuccessfulWithDisplayName:(NSString * _Null_unspecified)displayName andAuthParams:(NSDictionary * _Null_unspecified)authParams;
+- (void)onLoginFailedWithErrorCode:(NSNumber * _Null_unspecified)errorCode;
+- (void)onOneTimeKeyGenerated:(NSString * _Null_unspecified)key;
+- (void)onRefreshTokenFailed:(NSNumber * _Null_unspecified)errorCode;
+- (void)onRefreshTokenSuccess:(NSDictionary * _Null_unspecified)authParams;
+- (void)onConnectionSuccessful;
+- (void)onConnectionClosed;
+- (void)onConnectionFailedWithError:(NSString * _Null_unspecified)reason;
 @end
 
 #pragma clang diagnostic pop

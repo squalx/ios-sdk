@@ -6,14 +6,43 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
+import AVFoundation
 import Foundation
+import UIKit
 import VoxImplant
+
+public enum VoxboneLogLevel {
+    case VOXBONE_ERROR_LOG_LEVEL
+    case VOXBONE_INFO_LOG_LEVEL
+    case VOXBONE_DEBUG_LOG_LEVEL
+    case VOXBONE_TRACE_LOG_LEVEL
+}
+
+@objc public protocol VoxboneDelegate : NSObjectProtocol {
+    
+    @objc optional func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!)
+    
+    @objc optional func onLoginFailedWithErrorCode(_ errorCode: NSNumber!)
+    
+    @objc optional func onOneTimeKeyGenerated(_ key: String!)
+    
+    @objc optional func onRefreshTokenFailed(_ errorCode: NSNumber!)
+    
+    @objc optional func onRefreshTokenSuccess(_ authParams: [AnyHashable : Any]!)
+    
+    @objc optional func onConnectionSuccessful()
+    
+    @objc optional func onConnectionClosed()
+    
+    @objc optional func onConnectionFailedWithError(_ reason: String!)
+}
 
 open class VBWrapper: NSObject {
     
     // MARK: - # Variables
     
     fileprivate var voxImplant: VoxImplant!
+    fileprivate var voxboneDelegate: VoxboneDelegate!
     
     // MARK: - # Singleton
     
@@ -23,18 +52,32 @@ open class VBWrapper: NSObject {
         super.init()
         
         voxImplant = VoxImplant.getInstance()
+        voxImplant.voxDelegate = self
     }
     
     // MARK: - # Logs
     
-    open class func setLogLevel(_ logLevel: VoxImplantLogLevel) {
-        VoxImplant.setLogLevel(logLevel)
+    open class func setLogLevel(_ logLevel: VoxboneLogLevel) {
+        switch logLevel {
+        case .VOXBONE_ERROR_LOG_LEVEL:
+            VoxImplant.setLogLevel(ERROR_LOG_LEVEL)
+        case .VOXBONE_INFO_LOG_LEVEL:
+            VoxImplant.setLogLevel(INFO_LOG_LEVEL)
+        case .VOXBONE_DEBUG_LOG_LEVEL:
+            VoxImplant.setLogLevel(DEBUG_LOG_LEVEL)
+        case .VOXBONE_TRACE_LOG_LEVEL:
+            VoxImplant.setLogLevel(TRACE_LOG_LEVEL)
+        }
     }
     
     // MARK: - # Delegate
     
-    open func getVoxDelegate() -> VoxImplantDelegate! {
-        return voxImplant.getVoxDelegate()
+    open func setVoxboneDelegate(delegate: VoxboneDelegate!) {
+        voxboneDelegate = delegate
+    }
+    
+    open func getVoxboneDelegate() -> VoxboneDelegate! {
+        return voxboneDelegate
     }
     
     // MARK: - # Connection
@@ -127,5 +170,40 @@ open class VBWrapper: NSObject {
     
     open func getCallDuration(_ callId: String!) -> TimeInterval {
         return voxImplant.getCallDuration(callId)
+    }
+}
+
+extension VBWrapper: VoxImplantDelegate {
+    
+    public func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
+        voxboneDelegate.onLoginSuccessful?(withDisplayName: displayName, andAuthParams: authParams)
+    }
+    
+    public func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
+        voxboneDelegate.onLoginFailedWithErrorCode?(errorCode)
+    }
+    
+    public func onOneTimeKeyGenerated(_ key: String!) {
+        voxboneDelegate.onOneTimeKeyGenerated?(key)
+    }
+    
+    public func onRefreshTokenFailed(_ errorCode: NSNumber!) {
+        voxboneDelegate.onRefreshTokenFailed?(errorCode)
+    }
+    
+    public func onRefreshTokenSuccess(_ authParams: [AnyHashable : Any]!) {
+        voxboneDelegate.onRefreshTokenSuccess?(authParams)
+    }
+    
+    public func onConnectionSuccessful() {
+        voxboneDelegate.onConnectionSuccessful?()
+    }
+    
+    public func onConnectionClosed() {
+        voxboneDelegate.onConnectionClosed?()
+    }
+    
+    public func onConnectionFailedWithError(_ reason: String!) {
+        voxboneDelegate.onConnectionFailedWithError?(reason)
     }
 }
