@@ -35,6 +35,16 @@ public enum VoxboneLogLevel {
     @objc optional func onConnectionClosed()
     
     @objc optional func onConnectionFailedWithError(_ reason: String!)
+    
+    @objc optional func onCallConnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!)
+    
+    @objc optional func onCallDisconnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!)
+    
+    @objc optional func onCallRinging(_ callId: String!, withHeaders headers: [AnyHashable : Any]!)
+    
+    @objc optional func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!)
+    
+    @objc optional func onCallAudioStarted(_ callId: String!)
 }
 
 open class VBWrapper: NSObject {
@@ -205,5 +215,25 @@ extension VBWrapper: VoxImplantDelegate {
     
     public func onConnectionFailedWithError(_ reason: String!) {
         voxboneDelegate.onConnectionFailedWithError?(reason)
+    }
+    
+    public func onCallConnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
+        voxboneDelegate.onCallConnected?(callId, withHeaders: headers)
+    }
+    
+    public func onCallDisconnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
+        voxboneDelegate.onCallDisconnected?(callId, withHeaders: headers)
+    }
+    
+    public func onCallRinging(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
+        voxboneDelegate.onCallRinging?(callId, withHeaders: headers)
+    }
+    
+    public func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!) {
+        voxboneDelegate.onCallFailed?(callId, withCode: code, andReason: reason, withHeaders: headers)
+    }
+    
+    public func onCallAudioStarted(_ callId: String!) {
+        voxboneDelegate.onCallAudioStarted?(callId)
     }
 }

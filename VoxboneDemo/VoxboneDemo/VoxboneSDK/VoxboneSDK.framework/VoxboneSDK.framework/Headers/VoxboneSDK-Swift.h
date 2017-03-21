@@ -165,6 +165,11 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) VBWrapper * 
 - (void)onConnectionSuccessful;
 - (void)onConnectionClosed;
 - (void)onConnectionFailedWithError:(NSString * _Null_unspecified)reason;
+- (void)onCallConnected:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallDisconnected:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallRinging:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallFailed:(NSString * _Null_unspecified)callId withCode:(int32_t)code andReason:(NSString * _Null_unspecified)reason withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallAudioStarted:(NSString * _Null_unspecified)callId;
 @end
 
 
@@ -179,6 +184,11 @@ SWIFT_PROTOCOL("_TtP10VoxboneSDK15VoxboneDelegate_")
 - (void)onConnectionSuccessful;
 - (void)onConnectionClosed;
 - (void)onConnectionFailedWithError:(NSString * _Null_unspecified)reason;
+- (void)onCallConnected:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallDisconnected:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallRinging:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallFailed:(NSString * _Null_unspecified)callId withCode:(int32_t)code andReason:(NSString * _Null_unspecified)reason withHeaders:(NSDictionary * _Null_unspecified)headers;
+- (void)onCallAudioStarted:(NSString * _Null_unspecified)callId;
 @end
 
 #pragma clang diagnostic pop

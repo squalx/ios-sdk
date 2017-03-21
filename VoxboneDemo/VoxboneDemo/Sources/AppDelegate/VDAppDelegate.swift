@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  VDAppDelegate.swift
 //  VoxboneDemo
 //
 //  Created by Jerónimo Valli on 3/4/17.
@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class VDAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
