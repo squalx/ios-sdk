@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,9 +14,12 @@
         <scene sceneID="ahV-FC-lGP">
             <objects>
                 <navigationController id="PCt-gv-gTg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Aa-lx-zuH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Aa-lx-zuH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="g8m-57-QEq"/>
@@ -37,26 +41,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4X-wA-teL">
-                                <rect key="frame" x="147" y="318" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Connect"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5B4-RS-qGM">
+                                <rect key="frame" x="66" y="94" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="P0y-Ok-yuB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t52-5P-9F0">
+                                <rect key="frame" x="66" y="134" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZbI-iv-Iyw"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wc5-Tv-V5c">
+                                <rect key="frame" x="66" y="184" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="NW9-xJ-E9g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4OB-SS-IeG">
+                                <rect key="frame" x="66" y="224" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Rrp-eP-6z3"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4X-wA-teL">
+                                <rect key="frame" x="127" y="304" width="120" height="44"/>
+                                <color key="backgroundColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="5yp-wk-3JE"/>
+                                    <constraint firstAttribute="height" constant="44" id="Myc-IJ-yWt"/>
+                                </constraints>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="onClickConnect" destination="BYZ-38-t0r" eventType="touchUpInside" id="r7L-dY-wLI"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wc5-Tv-V5c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="FlM-Ek-vKC"/>
+                            <constraint firstItem="4OB-SS-IeG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="MgJ-9I-wb8"/>
+                            <constraint firstItem="O4X-wA-teL" firstAttribute="top" secondItem="4OB-SS-IeG" secondAttribute="bottom" constant="50" id="WZN-Oa-wtb"/>
+                            <constraint firstItem="5B4-RS-qGM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="X4t-B2-gSY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t52-5P-9F0" secondAttribute="trailing" constant="50" id="XZ1-10-x3Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5B4-RS-qGM" secondAttribute="trailing" constant="50" id="ekP-dT-wSn"/>
+                            <constraint firstItem="O4X-wA-teL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hQ5-cG-y5s"/>
+                            <constraint firstItem="4OB-SS-IeG" firstAttribute="top" secondItem="wc5-Tv-V5c" secondAttribute="bottom" constant="10" id="hyL-zl-xeO"/>
+                            <constraint firstItem="t52-5P-9F0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="iud-jD-aWR"/>
+                            <constraint firstItem="5B4-RS-qGM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="mFs-o7-xhV"/>
+                            <constraint firstItem="wc5-Tv-V5c" firstAttribute="top" secondItem="t52-5P-9F0" secondAttribute="bottom" constant="20" id="mSh-gU-dJG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4OB-SS-IeG" secondAttribute="trailing" constant="50" id="viP-M3-80i"/>
+                            <constraint firstItem="t52-5P-9F0" firstAttribute="top" secondItem="5B4-RS-qGM" secondAttribute="bottom" constant="10" id="zFM-n4-vxg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wc5-Tv-V5c" secondAttribute="trailing" constant="50" id="znj-GA-USl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Voxbone Demo" id="LZR-gO-unE"/>
                     <connections>
                         <outlet property="buttonConnect" destination="O4X-wA-teL" id="M0S-9Y-Shg"/>
+                        <outlet property="textFieldPassword" destination="4OB-SS-IeG" id="Yvi-zz-yv9"/>
+                        <outlet property="textFieldUsername" destination="t52-5P-9F0" id="dap-bA-ZcW"/>
                         <segue destination="t08-D8-rcg" kind="show" identifier="toHomeSegue" id="OM5-rJ-yeG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127" y="136"/>
+            <point key="canvasLocation" x="125.59999999999999" y="135.38230884557723"/>
         </scene>
         <!--Voxbone Demo-->
         <scene sceneID="d4w-uA-zKa">
@@ -71,9 +135,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fI-ea-FBG">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <rect key="frame" x="127" y="311" width="120" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Call"/>
+                                <color key="backgroundColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Call">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="onClickCall" destination="t08-D8-rcg" eventType="touchUpInside" id="LId-OB-ski"/>
                                 </connections>

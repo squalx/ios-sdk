@@ -30,13 +30,14 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoxboneText" translatesAutoresizingMaskIntoConstraints="NO" id="iPS-md-IiN">
                                 <rect key="frame" x="136" y="381" width="103" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="8zf-tn-ed0"/>
                                     <constraint firstAttribute="width" constant="103" id="Ldh-5j-RCm"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="36N-Du-qt7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-47" id="IEF-0f-Y38"/>
                             <constraint firstItem="iPS-md-IiN" firstAttribute="centerX" secondItem="36N-Du-qt7" secondAttribute="centerX" id="MLN-bI-tpX"/>
