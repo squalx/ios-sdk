@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  VDConstants.swift
 //  VoxboneDemo
 //
 //  Created by Jerónimo Valli on 3/20/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Constants {
+struct VDConstants {
     
     struct Segue {
         static let toHome = "toHomeSegue"

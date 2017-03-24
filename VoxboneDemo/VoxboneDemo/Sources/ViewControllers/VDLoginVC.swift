@@ -33,14 +33,17 @@ class VDLoginVC: UIViewController {
             return
         }
         
+        VDLoadingView.shared.display(view: view)
         VDVoxboneManager.shared.connect(
             onConnectionSuccessful: {
                 self.login()
             }, onConnectionFailed: { (_ error: Error) in
                 print("Error: \(error)")
                 self.setButtonConnectState(false)
+                VDLoadingView.shared.hide()
             }, onConnectionClosed: {
                 self.setButtonConnectState(false)
+                VDLoadingView.shared.hide()
             })
     }
     
@@ -48,11 +51,13 @@ class VDLoginVC: UIViewController {
         VDVoxboneManager.shared.login(textFieldUsername.text!, textFieldPassword.text!,
             onLoginSuccessful: { (_ displayName: String, _ authParams: [AnyHashable : Any]) in
                 self.setButtonConnectState(true)
-                self.performSegue(withIdentifier: Constants.Segue.toHome, sender: nil)
+                VDLoadingView.shared.hide()
+                self.performSegue(withIdentifier: VDConstants.Segue.toHome, sender: nil)
             }, onLoginFailed: { (_ errorCode: NSNumber) in
                 print("Error: \(errorCode)")
                 VDVoxboneManager.shared.close(onConnectionClosed: {
                     self.setButtonConnectState(false)
+                    VDLoadingView.shared.hide()
                 })
             })
     }

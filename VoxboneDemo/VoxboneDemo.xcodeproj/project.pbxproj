@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27F585E4196552EDBBB7D015 /* Pods_VoxboneDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */; };
+		CA4847C21E83383B0092F7A5 /* VDLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4847C11E83383B0092F7A5 /* VDLoadingView.swift */; };
 		CA4949C51E718F9C00592D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4949C31E718F9C00592D95 /* LaunchScreen.storyboard */; };
 		CA4949C61E718F9C00592D95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4949C41E718F9C00592D95 /* Main.storyboard */; };
 		CA4949CC1E718FAF00592D95 /* VDLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4949CA1E718FAF00592D95 /* VDLoginVC.swift */; };
@@ -15,7 +16,7 @@
 		CA565DC81E806C4E008BCF50 /* VoxboneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA565DCB1E80919E008BCF50 /* VDHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */; };
 		CA565DCE1E809220008BCF50 /* VDVoxboneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */; };
-		CA565DD11E809B72008BCF50 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DD01E809B72008BCF50 /* Constants.swift */; };
+		CA565DD11E809B72008BCF50 /* VDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DD01E809B72008BCF50 /* VDConstants.swift */; };
 		CADF6A8B1E6B2F4E00FDDB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */; };
 		CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */; };
 /* End PBXBuildFile section */
@@ -37,13 +38,14 @@
 /* Begin PBXFileReference section */
 		4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoxboneDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B42879001D865A0A39D2935 /* Pods-VoxboneDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoxboneDemo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo.release.xcconfig"; sourceTree = "<group>"; };
+		CA4847C11E83383B0092F7A5 /* VDLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDLoadingView.swift; path = Sources/Helpers/VDLoadingView.swift; sourceTree = "<group>"; };
 		CA4949C31E718F9C00592D95 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Storyboards/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA4949C41E718F9C00592D95 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
 		CA4949CA1E718FAF00592D95 /* VDLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDLoginVC.swift; sourceTree = "<group>"; };
 		CA4949CE1E718FC300592D95 /* VDAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDAppDelegate.swift; sourceTree = "<group>"; };
 		CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDHomeVC.swift; sourceTree = "<group>"; };
 		CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDVoxboneManager.swift; path = Sources/Managers/VDVoxboneManager.swift; sourceTree = "<group>"; };
-		CA565DD01E809B72008BCF50 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Constants/Constants.swift; sourceTree = "<group>"; };
+		CA565DD01E809B72008BCF50 /* VDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDConstants.swift; path = Sources/Constants/VDConstants.swift; sourceTree = "<group>"; };
 		CADF6A801E6B2F4E00FDDB45 /* VoxboneDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoxboneDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,11 +76,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CA4847C01E8338220092F7A5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CA4847C11E83383B0092F7A5 /* VDLoadingView.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		CA4949C11E718F4600592D95 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				CA4949CD1E718FC300592D95 /* AppDelegate */,
 				CA565DCF1E809B48008BCF50 /* Constants */,
+				CA4847C01E8338220092F7A5 /* Helpers */,
 				CA565DCC1E8091F8008BCF50 /* Managers */,
 				CA4949C91E718FAF00592D95 /* ViewControllers */,
 			);
@@ -124,7 +135,7 @@
 		CA565DCF1E809B48008BCF50 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CA565DD01E809B72008BCF50 /* Constants.swift */,
+				CA565DD01E809B72008BCF50 /* VDConstants.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -301,11 +312,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA565DD11E809B72008BCF50 /* Constants.swift in Sources */,
+				CA565DD11E809B72008BCF50 /* VDConstants.swift in Sources */,
 				CA4949CF1E718FC300592D95 /* VDAppDelegate.swift in Sources */,
 				CA565DCB1E80919E008BCF50 /* VDHomeVC.swift in Sources */,
 				CA4949CC1E718FAF00592D95 /* VDLoginVC.swift in Sources */,
 				CA565DCE1E809220008BCF50 /* VDVoxboneManager.swift in Sources */,
+				CA4847C21E83383B0092F7A5 /* VDLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

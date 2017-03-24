@@ -23,6 +23,7 @@ class VDVoxboneManager: NSObject {
     
     var wrapper: VBWrapper = VBWrapper.shared
     var callId: String? = nil
+    var userName: String? = nil
     
     var connectionSuccessful: VDOnConnectionSuccessfulHandler? = nil
     var connectionFailed: VDOnConnectionFailedHandler? = nil
@@ -75,17 +76,28 @@ class VDVoxboneManager: NSObject {
             print("calling to \(to) - withCallId: \(callId!)")
         }
     }
+    
+    public func hangup(onCallDisconnected: VDOnCallDisconnectedHandler?) {
+        callDisconnected = onCallDisconnected
+        if callId != nil {
+            if !wrapper.disconnectCall(callId!, withHeaders: nil) {
+                callDisconnected?(callId!, [AnyHashable : Any]())
+            }
+        }
+    }
 }
 
 extension VDVoxboneManager: VoxboneDelegate {
     
     func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
         print("onLoginSuccessful: displayName - \(displayName)")
+        userName = displayName
         loginSuccessful?(displayName, authParams)
     }
     
     func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
         print("onLoginFailedWithErrorCode: errorCode - \(errorCode)")
+        userName = ""
         loginFailed?(errorCode)
     }
     
