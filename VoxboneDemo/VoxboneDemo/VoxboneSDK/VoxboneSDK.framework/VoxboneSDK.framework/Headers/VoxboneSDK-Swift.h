@@ -170,6 +170,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) VBWrapper * 
 - (void)onCallRinging:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)onCallFailed:(NSString * _Null_unspecified)callId withCode:(int32_t)code andReason:(NSString * _Null_unspecified)reason withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)onCallAudioStarted:(NSString * _Null_unspecified)callId;
+- (void)onNetStatsReceivedInCall:(NSString * _Null_unspecified)callId withStats:(struct VoxImplantNetworkInfo const * _Null_unspecified)stats;
 @end
 
 
@@ -189,6 +190,7 @@ SWIFT_PROTOCOL("_TtP10VoxboneSDK15VoxboneDelegate_")
 - (void)onCallRinging:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)onCallFailed:(NSString * _Null_unspecified)callId withCode:(int32_t)code andReason:(NSString * _Null_unspecified)reason withHeaders:(NSDictionary * _Null_unspecified)headers;
 - (void)onCallAudioStarted:(NSString * _Null_unspecified)callId;
+- (void)onNetStatsReceived:(NSString * _Null_unspecified)callId withPacketLoss:(NSNumber * _Null_unspecified)packetLoss;
 @end
 
 #pragma clang diagnostic pop

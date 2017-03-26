@@ -45,6 +45,8 @@ public enum VoxboneLogLevel {
     @objc optional func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!)
     
     @objc optional func onCallAudioStarted(_ callId: String!)
+    
+    @objc optional func onNetStatsReceived(_ callId: String!, withPacketLoss packetLoss: NSNumber!)
 }
 
 open class VBWrapper: NSObject {
@@ -235,5 +237,13 @@ extension VBWrapper: VoxImplantDelegate {
     
     public func onCallAudioStarted(_ callId: String!) {
         voxboneDelegate.onCallAudioStarted?(callId)
+    }
+    
+    public func onNetStatsReceived(inCall callId: String!, withStats stats: UnsafePointer<VoxImplantNetworkInfo>!) {
+        var packetLoss: UInt = 0
+        if stats != nil {
+            packetLoss = stats.pointee.packetLoss
+        }
+        voxboneDelegate.onNetStatsReceived?(callId, withPacketLoss: NSNumber(value: packetLoss))
     }
 }

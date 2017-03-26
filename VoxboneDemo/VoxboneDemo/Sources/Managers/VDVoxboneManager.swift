@@ -20,6 +20,7 @@ class VDVoxboneManager: NSObject {
     public typealias VDOnCallRingingHandler = (_ callId: String, _ headers: [AnyHashable : Any]) -> Void
     public typealias VDOnCallFailedHandler = (_ callId: String, _ code: Int32, _ reason: String, _ headers: [AnyHashable : Any]) -> Void
     public typealias VDOnCallAudioStartedHandler = (_ callId: String) -> Void
+    public typealias VDOnNetStatsReceived = (_ callId: String, _ packetLoss: NSNumber) -> Void
     
     var wrapper: VBWrapper = VBWrapper.shared
     var callId: String? = nil
@@ -35,6 +36,7 @@ class VDVoxboneManager: NSObject {
     var callRinging: VDOnCallRingingHandler? = nil
     var callFailed: VDOnCallFailedHandler? = nil
     var callAudioStarted: VDOnCallAudioStartedHandler? = nil
+    var netStatsReceived: VDOnNetStatsReceived? = nil
     
     // MARK: - # Singleton
     
@@ -89,29 +91,29 @@ class VDVoxboneManager: NSObject {
 
 extension VDVoxboneManager: VoxboneDelegate {
     
-    func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
+    public func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
         print("onLoginSuccessful: displayName - \(displayName)")
         userName = displayName
         loginSuccessful?(displayName, authParams)
     }
     
-    func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
+    public func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
         print("onLoginFailedWithErrorCode: errorCode - \(errorCode)")
         userName = ""
         loginFailed?(errorCode)
     }
     
-    func onConnectionSuccessful() {
+    public func onConnectionSuccessful() {
         print("onConnectionSuccessful")
         connectionSuccessful?()
     }
     
-    func onConnectionClosed() {
+    public func onConnectionClosed() {
         print("onConnectionClosed")
         connectionClosed?()
     }
     
-    func onConnectionFailedWithError(_ reason: String!) {
+    public func onConnectionFailedWithError(_ reason: String!) {
         print("onConnectionFailedWithError: reason - \(reason)")
         connectionFailed?(NSError(domain: "", code: 400, userInfo: ["description": reason]) as Error)
     }
@@ -139,5 +141,10 @@ extension VDVoxboneManager: VoxboneDelegate {
     public func onCallAudioStarted(_ callId: String!) {
         print("onCallAudioStarted: callId - \(callId)")
         callAudioStarted?(callId)
+    }
+    
+    public func onNetStatsReceived(_ callId: String!, withPacketLoss packetLoss: NSNumber!) {
+        print("onNetStatsReceived: callId - \(callId) packetLoss - \(packetLoss)")
+        netStatsReceived?(callId, packetLoss)
     }
 }
