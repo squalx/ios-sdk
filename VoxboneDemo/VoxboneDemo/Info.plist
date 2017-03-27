@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>microphone</string>
+	<string>Voxbone Demo would like to access the microphone</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>voip</string>
