@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VDLoginVC: UIViewController {
     
@@ -24,6 +25,8 @@ class VDLoginVC: UIViewController {
         
         textFieldUsername.text = "test1@voxbonedemo.voxboneworkshop.voximplant.com"
         textFieldPassword.text = "123456"
+        
+        checkRecordPermission()
     }
 
     @IBAction func onClickConnect() {
@@ -69,6 +72,38 @@ class VDLoginVC: UIViewController {
             buttonConnect.setTitle("Connect", for: .normal)
         }
         buttonConnect.isEnabled = !isConnected
+    }
+    
+    func checkRecordPermission() {
+        switch AVAudioSession.sharedInstance().recordPermission() {
+            case AVAudioSessionRecordPermission.undetermined:
+                requestRecordPermission()
+                break
+            case AVAudioSessionRecordPermission.denied:
+                presentPopupAlertForRecordPermission()
+                break
+            case AVAudioSessionRecordPermission.granted:
+                print("Microphone Record Permission Granted")
+                break
+            default:
+                break
+        }
+    }
+    
+    func requestRecordPermission() {
+        AVAudioSession.sharedInstance().requestRecordPermission({ (granted: Bool) in
+            if granted {
+                print("Microphone Record Permission Granted")
+            } else {
+                self.presentPopupAlertForRecordPermission()
+            }
+        })
+    }
+    
+    func presentPopupAlertForRecordPermission() {
+        let alert = UIAlertController(title:"Error", message:"Please go to Settings and allow Microphone access to have a correct use of Voxbone Demo App!", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
