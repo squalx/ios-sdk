@@ -87,6 +87,22 @@ class VDVoxboneManager: NSObject {
             }
         }
     }
+    
+    public func setMute(_ value: Bool) {
+        wrapper.setMute(value)
+    }
+    
+    public func setUseLoudspeaker(_ value: Bool) -> Bool {
+        return wrapper.setUseLoudspeaker(value)
+    }
+    
+    public func getCallDuration() -> TimeInterval {
+        var duration: TimeInterval = 0.0
+        if callId != nil {
+            duration = wrapper.getCallDuration(callId!)
+        }
+        return duration
+    }
 }
 
 extension VDVoxboneManager: VoxboneDelegate {

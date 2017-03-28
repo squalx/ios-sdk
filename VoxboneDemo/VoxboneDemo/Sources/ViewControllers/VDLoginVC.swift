@@ -14,7 +14,15 @@ class VDLoginVC: UIViewController {
     @IBOutlet weak var textFieldUsername: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
     @IBOutlet weak var buttonConnect: UIButton!
-
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

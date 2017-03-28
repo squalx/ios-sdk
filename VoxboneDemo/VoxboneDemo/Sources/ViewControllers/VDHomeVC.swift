@@ -15,6 +15,7 @@ class VDHomeVC: UIViewController {
     static let textHangup = "Hangup"
 
     @IBOutlet weak var textFieldInput: UITextField!
+    @IBOutlet weak var buttonClear: UIButton!
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
@@ -28,6 +29,18 @@ class VDHomeVC: UIViewController {
     @IBOutlet weak var button0: UIButton!
     @IBOutlet weak var buttonPoundSign: UIButton!
     @IBOutlet weak var buttonCall: UIButton!
+    @IBOutlet weak var buttonMute: UIButton!
+    @IBOutlet weak var buttonSpeaker: UIButton!
+    
+    var isOnCall: Bool = false
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +49,11 @@ class VDHomeVC: UIViewController {
         
         buttonCall.clipsToBounds = true
         buttonCall.layer.cornerRadius = 5
+        
+        buttonClear.clipsToBounds = true
+        buttonClear.layer.cornerRadius = buttonClear.bounds.size.width/2
+        buttonClear.layer.borderColor = VDConstants.Color.violet.cgColor
+        buttonClear.layer.borderWidth = 1.0
         
         button1.clipsToBounds = true
         button1.layer.cornerRadius = button1.bounds.size.width/2
@@ -73,10 +91,27 @@ class VDHomeVC: UIViewController {
         buttonPoundSign.clipsToBounds = true
         buttonPoundSign.layer.cornerRadius = buttonPoundSign.bounds.size.width/2
         
+        buttonMute.clipsToBounds = true
+        buttonMute.layer.cornerRadius = 5
+        buttonMute.layer.borderColor = VDConstants.Color.violet.cgColor
+        buttonMute.layer.borderWidth = 1.0
+        
+        buttonSpeaker.clipsToBounds = true
+        buttonSpeaker.layer.cornerRadius = 5
+        buttonSpeaker.layer.borderColor = VDConstants.Color.violet.cgColor
+        buttonSpeaker.layer.borderWidth = 1.0
+        
+        buttonSpeaker.isHidden = true
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone, !VDConstants.Platform.isSimulator {
+            buttonSpeaker.isHidden = false
+        }
+        
         title = VDVoxboneManager.shared.userName
         
         textFieldInput.text = "5492216093000"
         //textFieldInput.text = "test2"//@voxbonedemo.voxboneworkshop.voximplant.com"
+        
+        updateButtonsForCallState()
     }
     
     @IBAction func onClickButtonPad(sender: UIButton) {
@@ -113,33 +148,51 @@ class VDHomeVC: UIViewController {
     @IBAction func onClickCall() {
         if buttonCall.title(for: .normal) == VDHomeVC.textHangup {
             VDVoxboneManager.shared.hangup(onCallDisconnected: { (callId: String!, headers: [AnyHashable : Any]!) in
-                self.setButtonCallState(false)
+                self.isOnCall = false
+                self.updateButtonsForCallState()
             })
             return
         }
         
         if let callTo = textFieldInput.text {
-            self.setButtonCallState(true)
+            isOnCall = true
+            updateButtonsForCallState()
             VDVoxboneManager.shared.call(to: callTo,
                 onCallConnected: { (VDOnCallConnectedHandler) in
                     
                 }, onCallDisconnected: { (VDOnCallDisconnectedHandler) in
-                    self.setButtonCallState(false)
+                    self.isOnCall = false
+                    self.updateButtonsForCallState()
                 }, onCallRinging: { (VDOnCallRingingHandler) in
                     
                 }, onCallFailed: { (VDOnCallFailedHandler) in
-                    self.setButtonCallState(false)
+                    self.isOnCall = false
+                    self.updateButtonsForCallState()
                 }, onCallAudioStarted: { (VDOnCallAudioStartedHandler) in
                 
             })
         }
     }
     
-    func setButtonCallState(_ isOnCall: Bool) {
+    @IBAction func onClickButtonMute() {
+        buttonMute.isSelected = !buttonMute.isSelected
+        VDVoxboneManager.shared.setMute(buttonMute.isSelected)
+    }
+    
+    @IBAction func onClickButtonSpeaker() {
+        buttonSpeaker.isSelected = !buttonSpeaker.isSelected
+        _ = VDVoxboneManager.shared.setUseLoudspeaker(buttonSpeaker.isSelected)
+    }
+    
+    func updateButtonsForCallState() {
         if isOnCall {
             buttonCall.setTitle(VDHomeVC.textHangup, for: .normal)
+            buttonMute.isEnabled = true
+            buttonSpeaker.isEnabled = true
         } else {
             buttonCall.setTitle(VDHomeVC.textCall, for: .normal)
+            buttonMute.isEnabled = false
+            buttonSpeaker.isEnabled = false
         }
     }
 }

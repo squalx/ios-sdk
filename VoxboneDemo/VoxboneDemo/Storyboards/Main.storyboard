@@ -134,20 +134,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fI-ea-FBG">
-                                <rect key="frame" x="127" y="504" width="120" height="44"/>
-                                <color key="backgroundColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="8W4-tK-e3X"/>
-                                    <constraint firstAttribute="height" constant="44" id="CdX-J2-ucc"/>
-                                </constraints>
-                                <state key="normal" title="Call">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClickCall" destination="t08-D8-rcg" eventType="touchUpInside" id="LId-OB-ski"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Xe-Np-K6k">
                                 <rect key="frame" x="66" y="94" width="243" height="30"/>
                                 <constraints>
@@ -157,6 +143,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3l-4f-xAZ">
+                                <rect key="frame" x="319" y="87" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="jZH-1D-bs3"/>
+                                    <constraint firstAttribute="height" constant="44" id="oE1-4z-bwE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClickButtonClear" destination="t08-D8-rcg" eventType="touchUpInside" id="sOD-8B-j0o"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-IJ-zgC">
                                 <rect key="frame" x="62" y="154" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -337,18 +337,58 @@
                                     <action selector="onClickButtonPadWithSender:" destination="t08-D8-rcg" eventType="touchUpInside" id="AeT-LO-5yl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3l-4f-xAZ">
-                                <rect key="frame" x="319" y="87" width="44" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fI-ea-FBG">
+                                <rect key="frame" x="137" y="504" width="100" height="44"/>
+                                <color key="backgroundColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="jZH-1D-bs3"/>
-                                    <constraint firstAttribute="height" constant="44" id="oE1-4z-bwE"/>
+                                    <constraint firstAttribute="width" constant="100" id="8W4-tK-e3X"/>
+                                    <constraint firstAttribute="height" constant="44" id="CdX-J2-ucc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="&lt;">
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Call">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Hangup"/>
+                                <connections>
+                                    <action selector="onClickCall" destination="t08-D8-rcg" eventType="touchUpInside" id="LId-OB-ski"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-AR-o5d">
+                                <rect key="frame" x="62" y="504" width="55" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="fm3-Rd-xef"/>
+                                    <constraint firstAttribute="height" constant="44" id="r83-iw-Dq5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Mute">
+                                    <color key="titleColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="selected" title="Unmute">
                                     <color key="titleColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onClickButtonClear" destination="t08-D8-rcg" eventType="touchUpInside" id="sOD-8B-j0o"/>
+                                    <action selector="onClickButtonMute" destination="t08-D8-rcg" eventType="touchUpInside" id="WpO-wR-T3O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Tmo-Be-ueq">
+                                <rect key="frame" x="257" y="504" width="55" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="3Hs-zi-VEd"/>
+                                    <constraint firstAttribute="width" constant="55" id="tXx-yQ-NqF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Speaker On">
+                                    <color key="titleColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="selected" title="Speaker Off">
+                                    <color key="titleColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClickButtonSpeaker" destination="t08-D8-rcg" eventType="touchUpInside" id="eQn-db-3e3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -356,6 +396,7 @@
                         <constraints>
                             <constraint firstItem="Odw-ag-ZRc" firstAttribute="top" secondItem="fM2-nb-3b9" secondAttribute="bottom" constant="30" id="1L7-C5-86E"/>
                             <constraint firstItem="EXd-lH-wiG" firstAttribute="centerX" secondItem="IVA-aU-D12" secondAttribute="centerX" id="30F-N6-5e5"/>
+                            <constraint firstItem="Tmo-Be-ueq" firstAttribute="leading" secondItem="0fI-ea-FBG" secondAttribute="trailing" constant="20" id="7fa-Fb-c4F"/>
                             <constraint firstItem="fRk-Zb-vWp" firstAttribute="centerX" secondItem="IVA-aU-D12" secondAttribute="centerX" id="DX1-mr-68i"/>
                             <constraint firstItem="hDd-yh-MYc" firstAttribute="centerY" secondItem="Odw-ag-ZRc" secondAttribute="centerY" id="Ge3-DV-3vt"/>
                             <constraint firstItem="Bxu-Ov-pOc" firstAttribute="leading" secondItem="fM2-nb-3b9" secondAttribute="trailing" constant="50" id="HXq-7P-ihM"/>
@@ -375,10 +416,13 @@
                             <constraint firstItem="Bxu-Ov-pOc" firstAttribute="centerY" secondItem="fM2-nb-3b9" secondAttribute="centerY" id="bls-6q-pR6"/>
                             <constraint firstItem="hDd-yh-MYc" firstAttribute="leading" secondItem="Odw-ag-ZRc" secondAttribute="trailing" constant="50" id="cQ1-aT-RD2"/>
                             <constraint firstItem="EXd-lH-wiG" firstAttribute="leading" secondItem="Lom-ar-yWu" secondAttribute="trailing" constant="50" id="cf7-lC-Qi2"/>
+                            <constraint firstItem="0fI-ea-FBG" firstAttribute="centerY" secondItem="rXc-AR-o5d" secondAttribute="centerY" id="h7W-bP-DLL"/>
                             <constraint firstItem="1Xe-Np-K6k" firstAttribute="top" secondItem="iV6-Hh-MJB" secondAttribute="bottom" constant="30" id="j7O-lI-ZFH"/>
+                            <constraint firstItem="Tmo-Be-ueq" firstAttribute="centerY" secondItem="0fI-ea-FBG" secondAttribute="centerY" id="khT-Ob-aZP"/>
                             <constraint firstItem="BBr-LJ-z4J" firstAttribute="centerY" secondItem="EXd-lH-wiG" secondAttribute="centerY" id="kjf-fj-1U6"/>
                             <constraint firstItem="1Xe-Np-K6k" firstAttribute="leading" secondItem="IVA-aU-D12" secondAttribute="leadingMargin" constant="50" id="pgU-XP-OZm"/>
                             <constraint firstItem="Xz4-LW-2oe" firstAttribute="centerY" secondItem="fRk-Zb-vWp" secondAttribute="centerY" id="q29-I8-BgW"/>
+                            <constraint firstItem="0fI-ea-FBG" firstAttribute="leading" secondItem="rXc-AR-o5d" secondAttribute="trailing" constant="20" id="qAG-kc-Yuv"/>
                             <constraint firstItem="t3l-4f-xAZ" firstAttribute="leading" secondItem="1Xe-Np-K6k" secondAttribute="trailing" constant="10" id="rV9-LX-GjQ"/>
                             <constraint firstItem="Xz4-LW-2oe" firstAttribute="leading" secondItem="fRk-Zb-vWp" secondAttribute="trailing" constant="50" id="srg-tK-RIA"/>
                             <constraint firstItem="fRk-Zb-vWp" firstAttribute="leading" secondItem="NTT-zQ-sau" secondAttribute="trailing" constant="50" id="vhA-IL-tua"/>
@@ -407,7 +451,10 @@
                         <outlet property="button8" destination="EXd-lH-wiG" id="78r-2f-pvy"/>
                         <outlet property="button9" destination="BBr-LJ-z4J" id="jS9-hO-FTP"/>
                         <outlet property="buttonCall" destination="0fI-ea-FBG" id="tJS-eJ-8Np"/>
+                        <outlet property="buttonClear" destination="t3l-4f-xAZ" id="vC8-D6-SOX"/>
+                        <outlet property="buttonMute" destination="rXc-AR-o5d" id="P3U-Ne-Bmm"/>
                         <outlet property="buttonPoundSign" destination="Xz4-LW-2oe" id="tIB-QL-dVP"/>
+                        <outlet property="buttonSpeaker" destination="Tmo-Be-ueq" id="Xnq-J4-grv"/>
                         <outlet property="buttonStarSign" destination="NTT-zQ-sau" id="FWX-ql-0mM"/>
                         <outlet property="textFieldInput" destination="1Xe-Np-K6k" id="eb2-4T-8MH"/>
                     </connections>
