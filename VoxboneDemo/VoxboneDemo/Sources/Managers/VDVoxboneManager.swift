@@ -6,7 +6,9 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
+import Foundation
 import VoxboneSDK
+import CallKit
 
 class VDVoxboneManager: NSObject {
     
@@ -25,6 +27,11 @@ class VDVoxboneManager: NSObject {
     var wrapper: VBWrapper = VBWrapper.shared
     var callId: String? = nil
     var userName: String? = nil
+    var onLocalHangup: Bool = false
+    var outgoingCall: UUID? = nil
+    var provider: CXProvider
+    let callController = CXCallController()
+    var startCallAction: CXStartCallAction? = nil
     
     var connectionSuccessful: VDOnConnectionSuccessfulHandler? = nil
     var connectionFailed: VDOnConnectionFailedHandler? = nil
@@ -42,11 +49,29 @@ class VDVoxboneManager: NSObject {
     
     open static let shared = VDVoxboneManager()
     
+    static var providerConfiguration: CXProviderConfiguration {
+        let localizedName = NSLocalizedString("VoxboneDemo", comment: "VoxboneDemo")
+        let providerConfiguration = CXProviderConfiguration(localizedName: localizedName)
+        
+        providerConfiguration.supportsVideo = false
+        providerConfiguration.maximumCallsPerCallGroup = 1
+        providerConfiguration.supportedHandleTypes = [.phoneNumber]
+        
+        if let iconMaskImage = UIImage(named: "AppIcon60x60") {
+            providerConfiguration.iconTemplateImageData = UIImagePNGRepresentation(iconMaskImage)
+        }
+        
+        return providerConfiguration
+    }
+    
     override init() {
+        provider = CXProvider(configuration: type(of: self).providerConfiguration)
         super.init()
         
         VBWrapper.setLogLevel(.VOXBONE_INFO_LOG_LEVEL)
         wrapper.setVoxboneDelegate(delegate: self)
+        
+        provider.setDelegate(self, queue: nil)
     }
     
     public func connect(onConnectionSuccessful successful: VDOnConnectionSuccessfulHandler?, onConnectionFailed failed: VDOnConnectionFailedHandler?, onConnectionClosed closed: VDOnConnectionClosedHandler?) {
@@ -68,20 +93,51 @@ class VDVoxboneManager: NSObject {
     }
     
     public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {
+        
+        cleanCall()
         callConnected = connected
         callDisconnected = disconnected
         callRinging = ringing
         callFailed = failed
         callAudioStarted = audioStarted
-        callId = wrapper.createCall(to, withVideo: false, andCustomData: "VoxboneDemo custom call data")
-        if callId != nil, wrapper.attachAudio(to: callId!), wrapper.startCall(callId!, withHeaders: nil) {
-            print("calling to \(to) - withCallId: \(callId!)")
+        if !VDConstants.Platform.isSimulator {
+            outgoingCall = UUID()
+            let handle = CXHandle(type: .phoneNumber, value: to)
+            let startCallAction = CXStartCallAction(call: outgoingCall!, handle: handle)
+            startCallAction.isVideo = false
+            let transaction = CXTransaction()
+            transaction.addAction(startCallAction)
+            callController.request(transaction) { error in
+                if let error = error {
+                    print("Error requesting transaction: \(error)")
+                } else {
+                    print("Requested transaction successfully")
+                }
+            }
+        } else {
+            callId = wrapper.createCall(to, withVideo: false, andCustomData: "VoxboneDemo custom call data")
+            if callId != nil, wrapper.attachAudio(to: callId!), wrapper.startCall(callId!, withHeaders: nil) {
+                print("calling to \(to) - withCallId: \(callId!)")
+            }
         }
     }
     
     public func hangup(onCallDisconnected: VDOnCallDisconnectedHandler?) {
+        
+        onLocalHangup = true
         callDisconnected = onCallDisconnected
-        if callId != nil {
+        if !VDConstants.Platform.isSimulator, outgoingCall != nil {
+            let endCallAction = CXEndCallAction(call: outgoingCall!)
+            let transaction = CXTransaction()
+            transaction.addAction(endCallAction)
+            callController.request(transaction) { error in
+                if let error = error {
+                    print("Error requesting transaction: \(error)")
+                } else {
+                    print("Requested transaction successfully")
+                }
+            }
+        } else if callId != nil {
             if !wrapper.disconnectCall(callId!, withHeaders: nil) {
                 callDisconnected?(callId!, [AnyHashable : Any]())
             }
@@ -102,6 +158,13 @@ class VDVoxboneManager: NSObject {
             duration = wrapper.getCallDuration(callId!)
         }
         return duration
+    }
+    
+    fileprivate func cleanCall() {
+        onLocalHangup = false
+        startCallAction = nil
+        callId = nil
+        outgoingCall = nil
     }
 }
 
@@ -126,21 +189,33 @@ extension VDVoxboneManager: VoxboneDelegate {
     
     public func onConnectionClosed() {
         print("onConnectionClosed")
+        if !VDConstants.Platform.isSimulator, startCallAction != nil {
+            startCallAction!.fail()
+        }
+        cleanCall()
         connectionClosed?()
     }
     
     public func onConnectionFailedWithError(_ reason: String!) {
         print("onConnectionFailedWithError: reason - \(reason)")
-        connectionFailed?(NSError(domain: "", code: 400, userInfo: ["description": reason]) as Error)
+        connectionFailed?(NSError(domain: "", code: 400, userInfo: ["localizedDescription": reason]) as Error)
     }
     
     public func onCallConnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
         print("onCallConnected: callId - \(callId)")
+        if !VDConstants.Platform.isSimulator, startCallAction != nil {
+            startCallAction!.fulfill()
+            provider.reportOutgoingCall(with: startCallAction!.uuid, connectedAt: nil)
+        }
         callConnected?(callId, headers)
     }
     
     public func onCallDisconnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
         print("onCallDisconnected: callId - \(callId)")
+        if !VDConstants.Platform.isSimulator, startCallAction != nil, !onLocalHangup {
+            provider.reportCall(with: startCallAction!.callUUID, endedAt: nil, reason: .remoteEnded)
+        }
+        cleanCall()
         callDisconnected?(callId, headers)
     }
     
@@ -151,6 +226,10 @@ extension VDVoxboneManager: VoxboneDelegate {
     
     public func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!) {
         print("onCallFailed: callId - \(callId) withCode - \(code) andReason - \(reason)")
+        if !VDConstants.Platform.isSimulator, startCallAction != nil {
+            startCallAction!.fail()
+        }
+        cleanCall()
         callFailed?(callId, code, reason, headers)
     }
     
@@ -162,5 +241,48 @@ extension VDVoxboneManager: VoxboneDelegate {
     public func onNetStatsReceived(_ callId: String!, withPacketLoss packetLoss: NSNumber!) {
         print("onNetStatsReceived: callId - \(callId) packetLoss - \(packetLoss)")
         netStatsReceived?(callId, packetLoss)
+    }
+}
+
+extension VDVoxboneManager: CXProviderDelegate {
+    
+    public func providerDidReset(_ provider: CXProvider) {
+        
+    }
+    
+    public func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
+        print("provider start call action")
+        
+        if action.callUUID == outgoingCall {
+            startCallAction = action
+            provider.reportOutgoingCall(with: action.callUUID, startedConnectingAt: nil)
+            callId = wrapper.createCall(action.handle.value, withVideo: false, andCustomData: "VoxboneDemo custom call data")
+            if callId != nil, wrapper.attachAudio(to: callId!), wrapper.startCall(callId!, withHeaders: nil) {
+                print("calling to \(action.handle.value) - withCallId: \(callId!)")
+            }
+        }
+    }
+    
+    public func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
+        print("provider end call action")
+        
+        if action.callUUID == outgoingCall {
+            action.fulfill()
+            if callId != nil, !wrapper.disconnectCall(callId!, withHeaders: nil) {
+                callDisconnected?(callId!, [AnyHashable : Any]())
+            }
+        }
+    }
+    
+    public func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
+        print("provider audioSession didActivate")
+    }
+    
+    public func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
+        print("provider audioSession didDeactivate")
+    }
+    
+    public func provider(_ provider: CXProvider, timedOutPerforming action: CXAction) {
+        print("Timed out \(#function)")
     }
 }

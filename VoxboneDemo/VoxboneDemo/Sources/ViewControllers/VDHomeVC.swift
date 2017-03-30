@@ -6,6 +6,7 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import VoxboneSDK
 
@@ -112,6 +113,16 @@ class VDHomeVC: UIViewController {
         //textFieldInput.text = "test2"//@voxbonedemo.voxboneworkshop.voximplant.com"
         
         updateButtonsForCallState()
+        
+        VDVoxboneManager.shared.connectionClosed = {
+            VDLoadingView.shared.hide()
+            self.isOnCall = false
+            self.updateButtonsForCallState()
+            _ = self.navigationController?.popViewController(animated: true)
+            let alert = UIAlertController(title:"Error", message:"The connection was closed!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:nil))
+            self.navigationController?.viewControllers.first?.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func onClickButtonPad(sender: UIButton) {
@@ -165,9 +176,10 @@ class VDHomeVC: UIViewController {
                     self.updateButtonsForCallState()
                 }, onCallRinging: { (VDOnCallRingingHandler) in
                     
-                }, onCallFailed: { (VDOnCallFailedHandler) in
+                }, onCallFailed: { (callId: String, code: Int32, reason: String, headers: [AnyHashable : Any]) in
                     self.isOnCall = false
                     self.updateButtonsForCallState()
+                    self.presentPopupAlertForCallFailed(reason)
                 }, onCallAudioStarted: { (VDOnCallAudioStartedHandler) in
                 
             })
@@ -193,6 +205,14 @@ class VDHomeVC: UIViewController {
             buttonCall.setTitle(VDHomeVC.textCall, for: .normal)
             buttonMute.isEnabled = false
             buttonSpeaker.isEnabled = false
+            buttonMute.isSelected = false
+            buttonSpeaker.isSelected = false
         }
+    }
+    
+    func presentPopupAlertForCallFailed(_ message: String) {
+        let alert = UIAlertController(title:"Error", message:message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:nil))
+        present(alert, animated: true, completion: nil)
     }
 }

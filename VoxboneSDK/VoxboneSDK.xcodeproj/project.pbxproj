@@ -22,9 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		CADF6A571E6B11D900FDDB45 /* VoxboneSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = CADF6A551E6B11D900FDDB45 /* VoxboneSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CADF6A661E6B13BD00FDDB45 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADF6A631E6B13BD00FDDB45 /* AVFoundation.framework */; };
 		CADF6A671E6B13BD00FDDB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADF6A641E6B13BD00FDDB45 /* Foundation.framework */; };
-		CADF6A681E6B13BD00FDDB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADF6A651E6B13BD00FDDB45 /* UIKit.framework */; };
 		CADF6A6B1E6B1EC100FDDB45 /* VBWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF6A6A1E6B1EC100FDDB45 /* VBWrapper.swift */; };
 		FF2583E4B5F10C1717AD673E /* Pods_VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9346C859DE4A3DEFBBE83FCD /* Pods_VoxboneSDK.framework */; };
 /* End PBXBuildFile section */
@@ -35,9 +33,7 @@
 		CADF6A521E6B11D900FDDB45 /* VoxboneSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VoxboneSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADF6A551E6B11D900FDDB45 /* VoxboneSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoxboneSDK.h; sourceTree = "<group>"; };
 		CADF6A561E6B11D900FDDB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CADF6A631E6B13BD00FDDB45 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CADF6A641E6B13BD00FDDB45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		CADF6A651E6B13BD00FDDB45 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CADF6A6A1E6B1EC100FDDB45 /* VBWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VBWrapper.swift; path = Sources/VBWrapper.swift; sourceTree = "<group>"; };
 		D6EA815552CCC20672FC53BE /* Pods-VoxboneSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoxboneSDK.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-VoxboneSDK/Pods-VoxboneSDK.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,9 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CADF6A661E6B13BD00FDDB45 /* AVFoundation.framework in Frameworks */,
 				CADF6A671E6B13BD00FDDB45 /* Foundation.framework in Frameworks */,
-				CADF6A681E6B13BD00FDDB45 /* UIKit.framework in Frameworks */,
 				FF2583E4B5F10C1717AD673E /* Pods_VoxboneSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,9 +91,7 @@
 		CADF6A601E6B13A300FDDB45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CADF6A631E6B13BD00FDDB45 /* AVFoundation.framework */,
 				CADF6A641E6B13BD00FDDB45 /* Foundation.framework */,
-				CADF6A651E6B13BD00FDDB45 /* UIKit.framework */,
 				9346C859DE4A3DEFBBE83FCD /* Pods_VoxboneSDK.framework */,
 			);
 			name = Frameworks;

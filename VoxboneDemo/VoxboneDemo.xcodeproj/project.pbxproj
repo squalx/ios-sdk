@@ -17,6 +17,10 @@
 		CA565DCB1E80919E008BCF50 /* VDHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */; };
 		CA565DCE1E809220008BCF50 /* VDVoxboneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */; };
 		CA565DD11E809B72008BCF50 /* VDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DD01E809B72008BCF50 /* VDConstants.swift */; };
+		CAD381FB1E8BEB33009371B6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FA1E8BEB33009371B6 /* AVFoundation.framework */; };
+		CAD381FD1E8BEB3B009371B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FC1E8BEB3B009371B6 /* Foundation.framework */; };
+		CAD381FF1E8BEB42009371B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FE1E8BEB42009371B6 /* UIKit.framework */; };
+		CAD382011E8BED46009371B6 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD382001E8BED46009371B6 /* CallKit.framework */; };
 		CADF6A8B1E6B2F4E00FDDB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */; };
 		CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +50,10 @@
 		CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDHomeVC.swift; sourceTree = "<group>"; };
 		CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDVoxboneManager.swift; path = Sources/Managers/VDVoxboneManager.swift; sourceTree = "<group>"; };
 		CA565DD01E809B72008BCF50 /* VDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDConstants.swift; path = Sources/Constants/VDConstants.swift; sourceTree = "<group>"; };
+		CAD381FA1E8BEB33009371B6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CAD381FC1E8BEB3B009371B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CAD381FE1E8BEB42009371B6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CAD382001E8BED46009371B6 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 		CADF6A801E6B2F4E00FDDB45 /* VoxboneDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoxboneDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +67,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD382011E8BED46009371B6 /* CallKit.framework in Frameworks */,
+				CAD381FF1E8BEB42009371B6 /* UIKit.framework in Frameworks */,
+				CAD381FD1E8BEB3B009371B6 /* Foundation.framework in Frameworks */,
+				CAD381FB1E8BEB33009371B6 /* AVFoundation.framework in Frameworks */,
 				CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */,
 				27F585E4196552EDBBB7D015 /* Pods_VoxboneDemo.framework in Frameworks */,
 			);
@@ -173,6 +185,10 @@
 		CADF6A951E6B346000FDDB45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAD382001E8BED46009371B6 /* CallKit.framework */,
+				CAD381FE1E8BEB42009371B6 /* UIKit.framework */,
+				CAD381FC1E8BEB3B009371B6 /* Foundation.framework */,
+				CAD381FA1E8BEB33009371B6 /* AVFoundation.framework */,
 				CADF6A961E6B346000FDDB45 /* VoxboneSDK.framework */,
 				4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */,
 			);

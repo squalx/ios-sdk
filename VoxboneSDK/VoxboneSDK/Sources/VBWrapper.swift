@@ -6,9 +6,7 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
-import AVFoundation
 import Foundation
-import UIKit
 import VoxImplant
 
 public enum VoxboneLogLevel {
