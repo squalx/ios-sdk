@@ -1,5 +1,5 @@
 //
-//  VBWrapper.swift
+//  Voxbone.swift
 //  VoxboneSDK
 //
 //  Created by Jerónimo Valli on 3/4/17.
@@ -8,6 +8,8 @@
 
 import Foundation
 import VoxImplant
+import Alamofire
+import SwiftyJSON
 
 public enum VoxboneLogLevel {
     case VOXBONE_ERROR_LOG_LEVEL
@@ -16,47 +18,18 @@ public enum VoxboneLogLevel {
     case VOXBONE_TRACE_LOG_LEVEL
 }
 
-@objc public protocol VoxboneDelegate : NSObjectProtocol {
-    
-    @objc optional func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!)
-    
-    @objc optional func onLoginFailedWithErrorCode(_ errorCode: NSNumber!)
-    
-    @objc optional func onOneTimeKeyGenerated(_ key: String!)
-    
-    @objc optional func onRefreshTokenFailed(_ errorCode: NSNumber!)
-    
-    @objc optional func onRefreshTokenSuccess(_ authParams: [AnyHashable : Any]!)
-    
-    @objc optional func onConnectionSuccessful()
-    
-    @objc optional func onConnectionClosed()
-    
-    @objc optional func onConnectionFailedWithError(_ reason: String!)
-    
-    @objc optional func onCallConnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!)
-    
-    @objc optional func onCallDisconnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!)
-    
-    @objc optional func onCallRinging(_ callId: String!, withHeaders headers: [AnyHashable : Any]!)
-    
-    @objc optional func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!)
-    
-    @objc optional func onCallAudioStarted(_ callId: String!)
-    
-    @objc optional func onNetStatsReceived(_ callId: String!, withPacketLoss packetLoss: NSNumber!)
-}
-
-open class VBWrapper: NSObject {
+open class Voxbone: NSObject {
     
     // MARK: - # Variables
     
     fileprivate var voxImplant: VoxImplant!
-    fileprivate var voxboneDelegate: VoxboneDelegate!
+    
+    var voxboneDelegate: VoxboneDelegate!
+    var username: String = ""
     
     // MARK: - # Singleton
     
-    open static let shared = VBWrapper()
+    open static let shared = Voxbone()
     
     override init() {
         super.init()
@@ -111,7 +84,34 @@ open class VBWrapper: NSObject {
     // MARK: - # Login
     
     open func login(withUsername user: String!, andPassword password: String!) {
-        voxImplant.login(withUsername: user, andPassword: password)
+        
+        let headers = ["Content-Type": "application/x-www-form-urlencoded", "charset": "UTF-8"]
+        let parameters: Parameters = ["username": user, "key": password, "timestamp": String(Date().ticks), "jsonp": "voxbone.WebRTC.processAuthData"]
+        
+        Alamofire.request("https://cdn.voxbone.com/authentication/basicToken", method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
+            .response { response in
+                
+                if let data = response.data, let responseString = String(data:data, encoding:.utf8) {
+                    var jsonString = responseString.replacingOccurrences(of: "voxbone.WebRTC.processAuthData(", with: "")
+                    jsonString = jsonString.replacingOccurrences(of: ")", with: "")
+                    jsonString = jsonString.replacingOccurrences(of: ";", with: "")
+                    if let jsonData = jsonString.data(using: .utf8) {
+                        let json = JSON(jsonData)
+                        print("\(json)")
+                        for (key,subJson):(String, JSON) in json {
+                            print("\(key): \(subJson)")
+                        }
+                        self.username = user
+                        self.voxImplant.login(withUsername: "test1@voxbonedemo.voxboneworkshop.voximplant.com", andPassword: "123456")
+                    }
+                } else if let error = response.error as NSError? {
+                    print("error: \(error.description)")
+                    self.voxboneDelegate.onLoginFailedWithErrorCode?(NSNumber(value: error.code))
+                } else {
+                    print("no response")
+                    self.voxboneDelegate.onLoginFailedWithErrorCode?(nil)
+                }
+            }
     }
     
     open func login(withUsername user: String!, andOneTimeKey hash: String!) {
@@ -183,65 +183,8 @@ open class VBWrapper: NSObject {
     }
 }
 
-extension VBWrapper: VoxImplantDelegate {
-    
-    public func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
-        voxboneDelegate.onLoginSuccessful?(withDisplayName: displayName, andAuthParams: authParams)
-    }
-    
-    public func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
-        voxboneDelegate.onLoginFailedWithErrorCode?(errorCode)
-    }
-    
-    public func onOneTimeKeyGenerated(_ key: String!) {
-        voxboneDelegate.onOneTimeKeyGenerated?(key)
-    }
-    
-    public func onRefreshTokenFailed(_ errorCode: NSNumber!) {
-        voxboneDelegate.onRefreshTokenFailed?(errorCode)
-    }
-    
-    public func onRefreshTokenSuccess(_ authParams: [AnyHashable : Any]!) {
-        voxboneDelegate.onRefreshTokenSuccess?(authParams)
-    }
-    
-    public func onConnectionSuccessful() {
-        voxboneDelegate.onConnectionSuccessful?()
-    }
-    
-    public func onConnectionClosed() {
-        voxboneDelegate.onConnectionClosed?()
-    }
-    
-    public func onConnectionFailedWithError(_ reason: String!) {
-        voxboneDelegate.onConnectionFailedWithError?(reason)
-    }
-    
-    public func onCallConnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
-        voxboneDelegate.onCallConnected?(callId, withHeaders: headers)
-    }
-    
-    public func onCallDisconnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
-        voxboneDelegate.onCallDisconnected?(callId, withHeaders: headers)
-    }
-    
-    public func onCallRinging(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
-        voxboneDelegate.onCallRinging?(callId, withHeaders: headers)
-    }
-    
-    public func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!) {
-        voxboneDelegate.onCallFailed?(callId, withCode: code, andReason: reason, withHeaders: headers)
-    }
-    
-    public func onCallAudioStarted(_ callId: String!) {
-        voxboneDelegate.onCallAudioStarted?(callId)
-    }
-    
-    public func onNetStatsReceived(inCall callId: String!, withStats stats: UnsafePointer<VoxImplantNetworkInfo>!) {
-        var packetLoss: UInt = 0
-        if stats != nil {
-            packetLoss = stats.pointee.packetLoss
-        }
-        voxboneDelegate.onNetStatsReceived?(callId, withPacketLoss: NSNumber(value: packetLoss))
+extension Date {
+    var ticks: UInt64 {
+        return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
     }
 }

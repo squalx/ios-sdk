@@ -13,7 +13,7 @@ import VoxboneSDK
 class VDHomeVC: UIViewController {
     
     static let textCall = "Call"
-    static let textHangup = "Hangup"
+    static let textHangup = "End"
 
     @IBOutlet weak var textFieldInput: UITextField!
     @IBOutlet weak var buttonClear: UIButton!

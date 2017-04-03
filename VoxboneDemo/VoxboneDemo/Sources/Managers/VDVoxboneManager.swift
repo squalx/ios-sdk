@@ -6,9 +6,11 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
-import Foundation
-import VoxboneSDK
+import AVFoundation
 import CallKit
+import Foundation
+import UIKit
+import VoxboneSDK
 
 class VDVoxboneManager: NSObject {
     
@@ -24,7 +26,7 @@ class VDVoxboneManager: NSObject {
     public typealias VDOnCallAudioStartedHandler = (_ callId: String) -> Void
     public typealias VDOnNetStatsReceived = (_ callId: String, _ packetLoss: NSNumber) -> Void
     
-    var wrapper: VBWrapper = VBWrapper.shared
+    var voxbone: Voxbone = Voxbone.shared
     var callId: String? = nil
     var userName: String? = nil
     var onLocalHangup: Bool = false
@@ -68,8 +70,8 @@ class VDVoxboneManager: NSObject {
         provider = CXProvider(configuration: type(of: self).providerConfiguration)
         super.init()
         
-        VBWrapper.setLogLevel(.VOXBONE_INFO_LOG_LEVEL)
-        wrapper.setVoxboneDelegate(delegate: self)
+        Voxbone.setLogLevel(.VOXBONE_INFO_LOG_LEVEL)
+        voxbone.setVoxboneDelegate(delegate: self)
         
         provider.setDelegate(self, queue: nil)
     }
@@ -78,18 +80,18 @@ class VDVoxboneManager: NSObject {
         connectionSuccessful = successful
         connectionFailed = failed
         connectionClosed = closed
-        wrapper.connect(false)
+        voxbone.connect(false)
     }
     
     public func close(onConnectionClosed closed: VDOnConnectionClosedHandler?) {
         connectionClosed = closed
-        wrapper.closeConnection()
+        voxbone.closeConnection()
     }
     
     public func login(_ username: String, _ password: String, onLoginSuccessful successful: VDOnLoginSuccessfulHandler?, onLoginFailed failed: VDOnLoginFailedHandler?) {
         loginSuccessful = successful
         loginFailed = failed
-        wrapper.login(withUsername: username, andPassword: password)
+        voxbone.login(withUsername: username, andPassword: password)
     }
     
     public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {
@@ -115,8 +117,8 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else {
-            callId = wrapper.createCall(to, withVideo: false, andCustomData: "VoxboneDemo custom call data")
-            if callId != nil, wrapper.attachAudio(to: callId!), wrapper.startCall(callId!, withHeaders: nil) {
+            callId = voxbone.createCall(to, withVideo: false, andCustomData: "VoxboneDemo custom call data")
+            if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(to) - withCallId: \(callId!)")
             }
         }
@@ -138,24 +140,24 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else if callId != nil {
-            if !wrapper.disconnectCall(callId!, withHeaders: nil) {
+            if !voxbone.disconnectCall(callId!, withHeaders: nil) {
                 callDisconnected?(callId!, [AnyHashable : Any]())
             }
         }
     }
     
     public func setMute(_ value: Bool) {
-        wrapper.setMute(value)
+        voxbone.setMute(value)
     }
     
     public func setUseLoudspeaker(_ value: Bool) -> Bool {
-        return wrapper.setUseLoudspeaker(value)
+        return voxbone.setUseLoudspeaker(value)
     }
     
     public func getCallDuration() -> TimeInterval {
         var duration: TimeInterval = 0.0
         if callId != nil {
-            duration = wrapper.getCallDuration(callId!)
+            duration = voxbone.getCallDuration(callId!)
         }
         return duration
     }
@@ -256,8 +258,8 @@ extension VDVoxboneManager: CXProviderDelegate {
         if action.callUUID == outgoingCall {
             startCallAction = action
             provider.reportOutgoingCall(with: action.callUUID, startedConnectingAt: nil)
-            callId = wrapper.createCall(action.handle.value, withVideo: false, andCustomData: "VoxboneDemo custom call data")
-            if callId != nil, wrapper.attachAudio(to: callId!), wrapper.startCall(callId!, withHeaders: nil) {
+            callId = voxbone.createCall(action.handle.value, withVideo: false, andCustomData: "VoxboneDemo custom call data")
+            if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(action.handle.value) - withCallId: \(callId!)")
             }
         }
@@ -268,7 +270,7 @@ extension VDVoxboneManager: CXProviderDelegate {
         
         if action.callUUID == outgoingCall {
             action.fulfill()
-            if callId != nil, !wrapper.disconnectCall(callId!, withHeaders: nil) {
+            if callId != nil, !voxbone.disconnectCall(callId!, withHeaders: nil) {
                 callDisconnected?(callId!, [AnyHashable : Any]())
             }
         }

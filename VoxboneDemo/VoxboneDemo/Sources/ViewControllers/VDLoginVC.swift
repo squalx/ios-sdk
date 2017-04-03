@@ -6,9 +6,9 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
+import AVFoundation
 import Foundation
 import UIKit
-import AVFoundation
 
 class VDLoginVC: UIViewController {
     
@@ -30,8 +30,8 @@ class VDLoginVC: UIViewController {
         buttonConnect.clipsToBounds = true
         buttonConnect.layer.cornerRadius = 5
         
-        textFieldUsername.text = "test1@voxbonedemo.voxboneworkshop.voximplant.com"
-        textFieldPassword.text = "123456"
+        textFieldUsername.text = "workshopdev"
+        textFieldPassword.text = "cmtOM1yQ!tU4"
         
         checkRecordPermission()
     }
