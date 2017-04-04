@@ -66,7 +66,7 @@ class VDLoginVC: UIViewController {
                 print("Error: \(errorCode)")
                 VDVoxboneManager.shared.close(onConnectionClosed: {
                     VDLoadingView.shared.hide()
-                    self.presentPopupAlertForConnectionClosed()
+                    self.presentPopupAlertForConnectionFailed(nil)
                 })
             })
     }
@@ -101,8 +101,12 @@ class VDLoginVC: UIViewController {
         presentPopupAlert("Please go to Settings and allow Microphone access to have a correct use of Voxbone Demo App!")
     }
     
-    func presentPopupAlertForConnectionFailed(_ error: Error) {
-        presentPopupAlert(error.localizedDescription)
+    func presentPopupAlertForConnectionFailed(_ error: Error?) {
+        if error != nil {
+            presentPopupAlert(error!.localizedDescription)
+        } else {
+            presentPopupAlert("")
+        }
     }
     
     func presentPopupAlertForConnectionClosed() {

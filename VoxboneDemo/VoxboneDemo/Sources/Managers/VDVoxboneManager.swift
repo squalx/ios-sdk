@@ -181,7 +181,11 @@ extension VDVoxboneManager: VoxboneDelegate {
     public func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
         print("onLoginFailedWithErrorCode: errorCode - \(errorCode)")
         userName = ""
-        loginFailed?(errorCode)
+        if errorCode == nil {
+            loginFailed?(NSNumber(value: 0))
+        } else {
+            loginFailed?(errorCode)
+        }
     }
     
     public func onConnectionSuccessful() {

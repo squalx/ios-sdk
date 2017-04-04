@@ -101,8 +101,12 @@ open class Voxbone: NSObject {
                         for (key,subJson):(String, JSON) in json {
                             print("\(key): \(subJson)")
                         }
-                        self.username = user
-                        self.voxImplant.login(withUsername: "test1@voxbonedemo.voxboneworkshop.voximplant.com", andPassword: "123456")
+                        if json["error"] != .null {
+                            self.voxboneDelegate.onLoginFailedWithErrorCode?(nil)
+                        } else {
+                            self.username = user
+                            self.voxImplant.login(withUsername: "test1@voxbonedemo.voxboneworkshop.voximplant.com", andPassword: "123456")
+                        }
                     }
                 } else if let error = response.error as NSError? {
                     print("error: \(error.description)")
