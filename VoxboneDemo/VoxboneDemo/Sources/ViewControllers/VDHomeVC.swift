@@ -140,6 +140,9 @@ class VDHomeVC: UIViewController {
         } else {
             textFieldInput.text = "\(newText)"
         }
+        if isOnCall {
+            VDVoxboneManager.shared.sendDTMF(digit: sender.tag)
+        }
     }
     
     @IBAction func onClickButtonClear() {

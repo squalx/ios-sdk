@@ -162,6 +162,12 @@ class VDVoxboneManager: NSObject {
         return duration
     }
     
+    public func sendDTMF(digit: Int32) {
+        if callId != nil {
+            voxbone.sendDTMF(callId, digit: digit)
+        }
+    }
+    
     fileprivate func cleanCall() {
         onLocalHangup = false
         startCallAction = nil
