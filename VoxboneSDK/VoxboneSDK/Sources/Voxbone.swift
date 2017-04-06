@@ -195,15 +195,10 @@ open class Voxbone: NSObject {
     // MARK: - # Call
     
     open func createVoxboneCall(_ to: String!) -> String! {
-        var customDataJson = [String: String]()
         var customData = ""
         if !self.username.isEmpty, !self.password.isEmpty {
-            customDataJson[Constants.Voxbone.API.Parameter.username] = self.username
-            customDataJson[Constants.Voxbone.API.Parameter.key] = self.password
-            if let string = JSON(customDataJson).rawString() {
-                print(string)
-                customData = string
-            }
+            customData = "{\"\(Constants.Voxbone.API.Parameter.username)\":\"\(self.username)\",\"\(Constants.Voxbone.API.Parameter.key)\":\"\(self.password)\"}"
+            print(customData)
         }
         return voxImplant.createCall(to, withVideo: false, andCustomData: customData)
     }
