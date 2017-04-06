@@ -141,7 +141,7 @@ class VDHomeVC: UIViewController {
             textFieldInput.text = "\(newText)"
         }
         if isOnCall {
-            VDVoxboneManager.shared.sendDTMF(digit: sender.tag)
+            VDVoxboneManager.shared.sendDTMF(digit: Int32(sender.tag))
         }
     }
     

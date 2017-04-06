@@ -20,12 +20,54 @@ public enum VoxboneLogLevel {
 
 open class Voxbone: NSObject {
     
+    // MARK: - # Constants
+    
+    fileprivate struct Constants {
+        struct VoxImplant {
+            struct Credentials {
+                static let username = "test1@voxbonedemo.voxboneworkshop.voximplant.com"
+                static let password = "123456"
+            }
+        }
+        struct Voxbone {
+            struct Credentials {
+                static let username = "workshopdev"
+                static let password = "cmtOM1yQ!tU4"
+            }
+            struct API {
+                struct Url {
+                    static let authentication = "https://cdn.voxbone.com/authentication/basicToken"
+                }
+                struct Parameter {
+                    static let username = "username"
+                    static let key = "key"
+                    static let timestamp = "timestamp"
+                    static let jsonp = "jsonp"
+                    static let error = "error"
+                    static let number = "number"
+                }
+                struct ParameterValue {
+                    static let processAuthData = "voxbone.WebRTC.processAuthData"
+                }
+                struct Header {
+                    static let contentType = "Content-Type"
+                    static let charset = "charset"
+                }
+                struct HeaderValue {
+                    static let applicationFormUrlEncoded = "application/x-www-form-urlencoded"
+                    static let utf8 = "UTF-s"
+                }
+            }
+        }
+    }
+    
     // MARK: - # Variables
     
     fileprivate var voxImplant: VoxImplant!
     
     var voxboneDelegate: VoxboneDelegate!
     var username: String = ""
+    var password: String = ""
     
     // MARK: - # Singleton
     
@@ -83,16 +125,23 @@ open class Voxbone: NSObject {
     
     // MARK: - # Login
     
-    open func login(withUsername user: String!, andPassword password: String!) {
+    open func loginToVoxbone() {
+        self.loginToVoxbone(withUsername: Constants.Voxbone.Credentials.username, andPassword: Constants.Voxbone.Credentials.password)
+    }
+    
+    open func loginToVoxbone(withUsername user: String!, andPassword password: String!) {
+        let headers = [Constants.Voxbone.API.Header.contentType: Constants.Voxbone.API.HeaderValue.applicationFormUrlEncoded,
+                       Constants.Voxbone.API.Header.charset: Constants.Voxbone.API.HeaderValue.utf8]
+        let parameters: Parameters = [Constants.Voxbone.API.Parameter.username: user,
+                                      Constants.Voxbone.API.Parameter.key: password,
+                                      Constants.Voxbone.API.Parameter.timestamp: String(Date().ticks),
+                                      Constants.Voxbone.API.Parameter.jsonp: Constants.Voxbone.API.ParameterValue.processAuthData]
         
-        let headers = ["Content-Type": "application/x-www-form-urlencoded", "charset": "UTF-8"]
-        let parameters: Parameters = ["username": user, "key": password, "timestamp": String(Date().ticks), "jsonp": "voxbone.WebRTC.processAuthData"]
-        
-        Alamofire.request("https://cdn.voxbone.com/authentication/basicToken", method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
+        Alamofire.request(Constants.Voxbone.API.Url.authentication, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
             .response { response in
                 
                 if let data = response.data, let responseString = String(data:data, encoding:.utf8) {
-                    var jsonString = responseString.replacingOccurrences(of: "voxbone.WebRTC.processAuthData(", with: "")
+                    var jsonString = responseString.replacingOccurrences(of: "\(Constants.Voxbone.API.ParameterValue.processAuthData)(", with: "")
                     jsonString = jsonString.replacingOccurrences(of: ")", with: "")
                     jsonString = jsonString.replacingOccurrences(of: ";", with: "")
                     if let jsonData = jsonString.data(using: .utf8) {
@@ -101,11 +150,10 @@ open class Voxbone: NSObject {
                         for (key,subJson):(String, JSON) in json {
                             print("\(key): \(subJson)")
                         }
-                        if json["error"] != .null {
+                        if json[Constants.Voxbone.API.Parameter.error] != .null {
                             self.voxboneDelegate.onLoginFailedWithErrorCode?(nil)
                         } else {
-                            self.username = user
-                            self.voxImplant.login(withUsername: "test1@voxbonedemo.voxboneworkshop.voximplant.com", andPassword: "123456")
+                            self.voxboneDelegate.onLoginSuccessful?(withDisplayName: self.username, andAuthParams: [AnyHashable : Any]())
                         }
                     }
                 } else if let error = response.error as NSError? {
@@ -115,7 +163,17 @@ open class Voxbone: NSObject {
                     print("no response")
                     self.voxboneDelegate.onLoginFailedWithErrorCode?(nil)
                 }
-            }
+        }
+    }
+    
+    open func loginAndStoreCredentialsForVoxboneCall(withUsername user: String!, andPassword password: String!) {
+        self.username = user
+        self.password = password
+        self.login(withUsername: Constants.VoxImplant.Credentials.username, andPassword: Constants.VoxImplant.Credentials.password)
+    }
+    
+    open func login(withUsername user: String!, andPassword password: String!) {
+        self.voxImplant.login(withUsername: user, andPassword: password)
     }
     
     open func login(withUsername user: String!, andOneTimeKey hash: String!) {
@@ -135,6 +193,20 @@ open class Voxbone: NSObject {
     }
     
     // MARK: - # Call
+    
+    open func createVoxboneCall(_ to: String!) -> String! {
+        var customDataJson = [String: String]()
+        var customData = ""
+        if !self.username.isEmpty, !self.password.isEmpty {
+            customDataJson[Constants.Voxbone.API.Parameter.username] = self.username
+            customDataJson[Constants.Voxbone.API.Parameter.key] = self.password
+            if let string = JSON(customDataJson).rawString() {
+                print(string)
+                customData = string
+            }
+        }
+        return voxImplant.createCall(to, withVideo: false, andCustomData: customData)
+    }
     
     open func createCall(_ to: String!, withVideo video: Bool, andCustomData customData: String!) -> String! {
         return voxImplant.createCall(to, withVideo: video, andCustomData: customData)

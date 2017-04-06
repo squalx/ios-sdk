@@ -91,7 +91,7 @@ class VDVoxboneManager: NSObject {
     public func login(_ username: String, _ password: String, onLoginSuccessful successful: VDOnLoginSuccessfulHandler?, onLoginFailed failed: VDOnLoginFailedHandler?) {
         loginSuccessful = successful
         loginFailed = failed
-        voxbone.login(withUsername: username, andPassword: password)
+        voxbone.loginAndStoreCredentialsForVoxboneCall(withUsername: username, andPassword: password)
     }
     
     public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {
@@ -117,7 +117,7 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else {
-            callId = voxbone.createCall(to, withVideo: false, andCustomData: "VoxboneDemo custom call data")
+            callId = voxbone.createVoxboneCall(to)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(to) - withCallId: \(callId!)")
             }
@@ -268,7 +268,7 @@ extension VDVoxboneManager: CXProviderDelegate {
         if action.callUUID == outgoingCall {
             startCallAction = action
             provider.reportOutgoingCall(with: action.callUUID, startedConnectingAt: nil)
-            callId = voxbone.createCall(action.handle.value, withVideo: false, andCustomData: "VoxboneDemo custom call data")
+            callId = voxbone.createVoxboneCall(action.handle.value)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(action.handle.value) - withCallId: \(callId!)")
             }
