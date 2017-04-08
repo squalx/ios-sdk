@@ -12,6 +12,7 @@ target 'VoxboneSDK' do
     pod 'VoxImplantSDK'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'Flurry-iOS-SDK/FlurrySDK'
 end
 
 target 'VoxboneDemo' do
@@ -19,4 +20,5 @@ target 'VoxboneDemo' do
     pod 'VoxImplantSDK'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'Flurry-iOS-SDK/FlurrySDK'
 end

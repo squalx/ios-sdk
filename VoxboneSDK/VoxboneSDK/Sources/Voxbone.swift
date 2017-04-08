@@ -10,6 +10,7 @@ import Foundation
 import VoxImplant
 import Alamofire
 import SwiftyJSON
+import Flurry_iOS_SDK
 
 public enum VoxboneLogLevel {
     case VOXBONE_ERROR_LOG_LEVEL
@@ -59,6 +60,15 @@ open class Voxbone: NSObject {
                 }
             }
         }
+        struct Flurry {
+            static let apiKey = "D2YQF4JBF69WYVR7VBCW"
+            struct Event {
+                static let userSession = "userSession"
+                static let failedUserLoggin = "failedUserLoggin"
+                static let outgoingCall = "outgoingCall"
+                static let failedCall = "failedCall"
+            }
+        }
     }
     
     // MARK: - # Variables
@@ -78,6 +88,8 @@ open class Voxbone: NSObject {
         
         voxImplant = VoxImplant.getInstance()
         voxImplant.voxDelegate = self
+        
+        Flurry.startSession(Constants.Flurry.apiKey, with: FlurrySessionBuilder.init().withLogLevel(FlurryLogLevelCriticalOnly).withCrashReporting(true))
     }
     
     // MARK: - # Logs

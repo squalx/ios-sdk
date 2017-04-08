@@ -8,14 +8,31 @@
 
 import Foundation
 import VoxImplant
+import Flurry_iOS_SDK
 
 extension Voxbone: VoxImplantDelegate {
     
+    // MARK: - # Constants
+    
+    fileprivate struct Constants {
+        struct Flurry {
+            static let apiKey = "D2YQF4JBF69WYVR7VBCW"
+            struct Event {
+                static let userSession = "userSession"
+                static let failedSession = "failedSession"
+                static let outgoingCall = "outgoingCall"
+                static let failedCall = "failedCall"
+            }
+        }
+    }
+    
     public func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
+        Flurry.logEvent(Constants.Flurry.Event.userSession, timed: true)
         voxboneDelegate.onLoginSuccessful?(withDisplayName: username, andAuthParams: authParams)
     }
     
     public func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {
+        Flurry.logEvent(Constants.Flurry.Event.failedSession)
         voxboneDelegate.onLoginFailedWithErrorCode?(errorCode)
     }
     
@@ -36,18 +53,22 @@ extension Voxbone: VoxImplantDelegate {
     }
     
     public func onConnectionClosed() {
+        Flurry.endTimedEvent(Constants.Flurry.Event.userSession, withParameters: nil)
         voxboneDelegate.onConnectionClosed?()
     }
     
     public func onConnectionFailedWithError(_ reason: String!) {
+        Flurry.logEvent(Constants.Flurry.Event.failedSession)
         voxboneDelegate.onConnectionFailedWithError?(reason)
     }
     
     public func onCallConnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
+        Flurry.logEvent(Constants.Flurry.Event.outgoingCall, timed: true)
         voxboneDelegate.onCallConnected?(callId, withHeaders: headers)
     }
     
     public func onCallDisconnected(_ callId: String!, withHeaders headers: [AnyHashable : Any]!) {
+        Flurry.endTimedEvent(Constants.Flurry.Event.outgoingCall, withParameters: nil)
         voxboneDelegate.onCallDisconnected?(callId, withHeaders: headers)
     }
     
@@ -56,6 +77,7 @@ extension Voxbone: VoxImplantDelegate {
     }
     
     public func onCallFailed(_ callId: String!, withCode code: Int32, andReason reason: String!, withHeaders headers: [AnyHashable : Any]!) {
+        Flurry.logEvent(Constants.Flurry.Event.failedCall)
         voxboneDelegate.onCallFailed?(callId, withCode: code, andReason: reason, withHeaders: headers)
     }
     
