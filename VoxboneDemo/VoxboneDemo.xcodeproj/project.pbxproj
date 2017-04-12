@@ -17,6 +17,8 @@
 		CA565DCB1E80919E008BCF50 /* VDHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */; };
 		CA565DCE1E809220008BCF50 /* VDVoxboneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */; };
 		CA565DD11E809B72008BCF50 /* VDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DD01E809B72008BCF50 /* VDConstants.swift */; };
+		CA5A0DBC1E9D7F3E0050389F /* VDStarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A0DBB1E9D7F3E0050389F /* VDStarButton.swift */; };
+		CA5A0DBE1E9D7FCA0050389F /* VDCallEndedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5A0DBD1E9D7FCA0050389F /* VDCallEndedVC.swift */; };
 		CAD381FB1E8BEB33009371B6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FA1E8BEB33009371B6 /* AVFoundation.framework */; };
 		CAD381FD1E8BEB3B009371B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FC1E8BEB3B009371B6 /* Foundation.framework */; };
 		CAD381FF1E8BEB42009371B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FE1E8BEB42009371B6 /* UIKit.framework */; };
@@ -50,6 +52,8 @@
 		CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDHomeVC.swift; sourceTree = "<group>"; };
 		CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDVoxboneManager.swift; path = Sources/Managers/VDVoxboneManager.swift; sourceTree = "<group>"; };
 		CA565DD01E809B72008BCF50 /* VDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDConstants.swift; path = Sources/Constants/VDConstants.swift; sourceTree = "<group>"; };
+		CA5A0DBB1E9D7F3E0050389F /* VDStarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDStarButton.swift; path = Sources/Helpers/VDStarButton.swift; sourceTree = "<group>"; };
+		CA5A0DBD1E9D7FCA0050389F /* VDCallEndedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDCallEndedVC.swift; sourceTree = "<group>"; };
 		CAD381FA1E8BEB33009371B6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CAD381FC1E8BEB3B009371B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CAD381FE1E8BEB42009371B6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -92,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				CA4847C11E83383B0092F7A5 /* VDLoadingView.swift */,
+				CA5A0DBB1E9D7F3E0050389F /* VDStarButton.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			children = (
 				CA4949CA1E718FAF00592D95 /* VDLoginVC.swift */,
 				CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */,
+				CA5A0DBD1E9D7FCA0050389F /* VDCallEndedVC.swift */,
 			);
 			name = ViewControllers;
 			path = Sources/ViewControllers;
@@ -331,7 +337,9 @@
 				CA565DD11E809B72008BCF50 /* VDConstants.swift in Sources */,
 				CA4949CF1E718FC300592D95 /* VDAppDelegate.swift in Sources */,
 				CA565DCB1E80919E008BCF50 /* VDHomeVC.swift in Sources */,
+				CA5A0DBC1E9D7F3E0050389F /* VDStarButton.swift in Sources */,
 				CA4949CC1E718FAF00592D95 /* VDLoginVC.swift in Sources */,
+				CA5A0DBE1E9D7FCA0050389F /* VDCallEndedVC.swift in Sources */,
 				CA565DCE1E809220008BCF50 /* VDVoxboneManager.swift in Sources */,
 				CA4847C21E83383B0092F7A5 /* VDLoadingView.swift in Sources */,
 			);

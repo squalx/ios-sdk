@@ -27,6 +27,7 @@ class VDVoxboneManager: NSObject {
     public typealias VDOnNetStatsReceived = (_ callId: String, _ packetLoss: NSNumber) -> Void
     
     var voxbone: Voxbone = Voxbone.shared
+    var phoneNumber: String? = nil
     var callId: String? = nil
     var userName: String? = nil
     var onLocalHangup: Bool = false
@@ -91,7 +92,7 @@ class VDVoxboneManager: NSObject {
     public func login(_ username: String, _ password: String, onLoginSuccessful successful: VDOnLoginSuccessfulHandler?, onLoginFailed failed: VDOnLoginFailedHandler?) {
         loginSuccessful = successful
         loginFailed = failed
-        voxbone.loginAndStoreCredentialsForVoxboneCall(withUsername: username, andPassword: password)
+        voxbone.loginToVoxbone(withUsername: username, andPassword: password)
     }
     
     public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {
@@ -102,9 +103,10 @@ class VDVoxboneManager: NSObject {
         callRinging = ringing
         callFailed = failed
         callAudioStarted = audioStarted
+        phoneNumber = to
         if !VDConstants.Platform.isSimulator {
             outgoingCall = UUID()
-            let handle = CXHandle(type: .phoneNumber, value: to)
+            let handle = CXHandle(type: .phoneNumber, value: phoneNumber!)
             let startCallAction = CXStartCallAction(call: outgoingCall!, handle: handle)
             startCallAction.isVideo = false
             let transaction = CXTransaction()
@@ -117,9 +119,9 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else {
-            callId = voxbone.createVoxboneCall(to)
+            callId = voxbone.createVoxboneCall(phoneNumber!)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
-                print("calling to \(to) - withCallId: \(callId!)")
+                print("calling to \(phoneNumber!) - withCallId: \(callId!)")
             }
         }
     }
@@ -171,8 +173,16 @@ class VDVoxboneManager: NSObject {
     fileprivate func cleanCall() {
         onLocalHangup = false
         startCallAction = nil
-        callId = nil
         outgoingCall = nil
+    }
+    
+    public func postRatingToVoxbone(_ rating: NSNumber, andComments comments: String, andResponse ratingResponse: ((_ result: String?, _ error: Error?) -> Void)?) {
+        
+        voxbone.postRatingToVoxbone(callId!, withPhone: phoneNumber!, andRating: rating, andComments: comments, andResponse: { (result: String?, error: Error?) in
+            self.callId = nil
+            self.phoneNumber = nil
+            ratingResponse?(result, error)
+        })
     }
 }
 

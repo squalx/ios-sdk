@@ -140,6 +140,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 @protocol VoxboneDelegate;
+@class NSNumber;
 
 SWIFT_CLASS("_TtC10VoxboneSDK7Voxbone")
 @interface Voxbone : NSObject
@@ -152,9 +153,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Voxbone * _N
 - (void)connect:(BOOL)connectivityCheck;
 - (void)connectTo:(NSString * _Null_unspecified)host;
 - (void)closeConnection;
-- (void)loginToVoxbone;
 - (void)loginToVoxboneWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
-- (void)loginAndStoreCredentialsForVoxboneCallWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
+- (void)basicLoginToVoxboneWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
+- (void)postRatingToVoxbone:(NSString * _Nonnull)callId withPhone:(NSString * _Nonnull)phone andRating:(NSNumber * _Nonnull)rating andComments:(NSString * _Nonnull)comments andResponse:(void (^ _Nullable)(NSString * _Nullable, NSError * _Nullable))ratingResponse;
 - (void)loginWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
 - (void)loginWithUsername:(NSString * _Null_unspecified)user andOneTimeKey:(NSString * _Null_unspecified)hash;
 - (void)loginWithUsername:(NSString * _Null_unspecified)user andToken:(NSString * _Null_unspecified)token;
@@ -175,7 +176,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Voxbone * _N
 - (NSTimeInterval)getCallDuration:(NSString * _Null_unspecified)callId SWIFT_WARN_UNUSED_RESULT;
 @end
 
-@class NSNumber;
 
 @interface Voxbone (SWIFT_EXTENSION(VoxboneSDK)) <VoxImplantDelegate>
 - (void)onLoginSuccessfulWithDisplayName:(NSString * _Null_unspecified)displayName andAuthParams:(NSDictionary * _Null_unspecified)authParams;

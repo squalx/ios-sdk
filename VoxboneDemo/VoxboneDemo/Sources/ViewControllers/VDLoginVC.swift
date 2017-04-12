@@ -31,7 +31,7 @@ class VDLoginVC: UIViewController {
         buttonConnect.layer.cornerRadius = 5
         
         textFieldUsername.text = "workshopdev"
-        textFieldPassword.text = "cmtOM1yQ!tU4"
+        textFieldPassword.text = "SnJ7Tk7x*rpS"
         
         checkRecordPermission()
     }

@@ -463,5 +463,153 @@
             </objects>
             <point key="canvasLocation" x="1248.8" y="136.28185907046478"/>
         </scene>
+        <!--Call EndedVC-->
+        <scene sceneID="WX9-0D-XLd">
+            <objects>
+                <viewController storyboardIdentifier="VDCallEndedVC" modalPresentationStyle="overCurrentContext" id="Yiz-Er-eOS" customClass="VDCallEndedVC" customModule="VoxboneDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mva-b1-Lxr"/>
+                        <viewControllerLayoutGuide type="bottom" id="yhV-Rz-402"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FUd-9B-Jha">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ked-Uj-AG6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHI-ES-P83">
+                                        <rect key="frame" x="28" y="183" width="319" height="300"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcT-pW-dLL" customClass="VDStarButton" customModule="VoxboneDemo" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="30" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="6b2-DM-whq"/>
+                                                    <constraint firstAttribute="height" constant="50" id="NQz-OP-SKs"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onClickButtonStar1:" destination="Yiz-Er-eOS" eventType="touchUpInside" id="aPA-nE-nQD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJP-8E-SRv" customClass="VDStarButton" customModule="VoxboneDemo" customModuleProvider="target">
+                                                <rect key="frame" x="75" y="30" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="n35-2A-axi"/>
+                                                    <constraint firstAttribute="width" constant="50" id="t5a-Wj-Gvr"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onClickButtonStar2:" destination="Yiz-Er-eOS" eventType="touchUpInside" id="HRc-Ty-vu9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="136-cX-GW6" customClass="VDStarButton" customModule="VoxboneDemo" customModuleProvider="target">
+                                                <rect key="frame" x="135" y="30" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="M8x-w1-p6w"/>
+                                                    <constraint firstAttribute="height" constant="50" id="fl0-Rc-IAL"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onClickButtonStar3:" destination="Yiz-Er-eOS" eventType="touchUpInside" id="ZbB-VE-rbi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afI-ch-fZl" customClass="VDStarButton" customModule="VoxboneDemo" customModuleProvider="target">
+                                                <rect key="frame" x="195" y="30" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="3f9-QZ-EXw"/>
+                                                    <constraint firstAttribute="width" constant="50" id="iYp-BV-qQl"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onClickButtonStar4:" destination="Yiz-Er-eOS" eventType="touchUpInside" id="UtQ-Lq-lVA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1A-Gr-jZN" customClass="VDStarButton" customModule="VoxboneDemo" customModuleProvider="target">
+                                                <rect key="frame" x="255" y="30" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="fd8-N2-oEu"/>
+                                                    <constraint firstAttribute="height" constant="50" id="rXc-4l-cie"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onClickButtonStar5:" destination="Yiz-Er-eOS" eventType="touchUpInside" id="17t-tA-CyQ"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Test Call from iOSVoxboneSDK" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OCu-Ul-SWK">
+                                                <rect key="frame" x="15" y="90" width="289" height="130"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="0Vl-CP-jVk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Yiz-Er-eOS" id="Bx2-Y5-WDl"/>
+                                                </connections>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWH-71-e5P">
+                                                <rect key="frame" x="109" y="230" width="100" height="44"/>
+                                                <color key="backgroundColor" red="0.44345918299999998" green="0.1147249565" blue="0.4606515169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="hPe-UO-qQu"/>
+                                                    <constraint firstAttribute="height" constant="44" id="ocT-Gq-dNp"/>
+                                                </constraints>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onClickButtonSend:" destination="Yiz-Er-eOS" eventType="touchUpInside" id="GGt-1c-ENr"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="rJP-8E-SRv" firstAttribute="top" secondItem="BHI-ES-P83" secondAttribute="top" constant="30" id="0D5-v5-gEN"/>
+                                            <constraint firstItem="f1A-Gr-jZN" firstAttribute="leading" secondItem="afI-ch-fZl" secondAttribute="trailing" constant="10" id="9gw-i8-XcD"/>
+                                            <constraint firstItem="136-cX-GW6" firstAttribute="centerX" secondItem="BHI-ES-P83" secondAttribute="centerX" id="K3n-IO-kgZ"/>
+                                            <constraint firstItem="136-cX-GW6" firstAttribute="leading" secondItem="rJP-8E-SRv" secondAttribute="trailing" constant="10" id="Mcf-aI-KNh"/>
+                                            <constraint firstItem="rJP-8E-SRv" firstAttribute="leading" secondItem="dcT-pW-dLL" secondAttribute="trailing" constant="10" id="Mqg-MH-mtb"/>
+                                            <constraint firstItem="afI-ch-fZl" firstAttribute="leading" secondItem="136-cX-GW6" secondAttribute="trailing" constant="10" id="QKj-G0-MKm"/>
+                                            <constraint firstItem="dcT-pW-dLL" firstAttribute="top" secondItem="BHI-ES-P83" secondAttribute="top" constant="30" id="UFq-V6-tVK"/>
+                                            <constraint firstItem="136-cX-GW6" firstAttribute="top" secondItem="BHI-ES-P83" secondAttribute="top" constant="30" id="W8d-Vr-tLk"/>
+                                            <constraint firstItem="f1A-Gr-jZN" firstAttribute="top" secondItem="BHI-ES-P83" secondAttribute="top" constant="30" id="i66-qL-2eL"/>
+                                            <constraint firstItem="dWH-71-e5P" firstAttribute="centerX" secondItem="BHI-ES-P83" secondAttribute="centerX" id="lhk-jr-3Il"/>
+                                            <constraint firstAttribute="height" constant="300" id="lm5-gl-FrL"/>
+                                            <constraint firstItem="dWH-71-e5P" firstAttribute="top" secondItem="OCu-Ul-SWK" secondAttribute="bottom" constant="10" id="pWx-K7-das"/>
+                                            <constraint firstItem="afI-ch-fZl" firstAttribute="top" secondItem="BHI-ES-P83" secondAttribute="top" constant="30" id="vzY-tJ-tL4"/>
+                                            <constraint firstAttribute="trailing" secondItem="OCu-Ul-SWK" secondAttribute="trailing" constant="15" id="yIT-wC-bDZ"/>
+                                            <constraint firstItem="OCu-Ul-SWK" firstAttribute="leading" secondItem="BHI-ES-P83" secondAttribute="leading" constant="15" id="yqA-Ss-Tuh"/>
+                                            <constraint firstItem="OCu-Ul-SWK" firstAttribute="top" secondItem="f1A-Gr-jZN" secondAttribute="bottom" constant="10" id="z6s-lz-RTY"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="BHI-ES-P83" secondAttribute="trailing" constant="20" id="Ho4-5n-U4S"/>
+                                    <constraint firstItem="BHI-ES-P83" firstAttribute="centerY" secondItem="ked-Uj-AG6" secondAttribute="centerY" id="Z6q-VA-dLo"/>
+                                    <constraint firstItem="BHI-ES-P83" firstAttribute="leading" secondItem="ked-Uj-AG6" secondAttribute="leadingMargin" constant="20" id="oHd-U1-KL2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ked-Uj-AG6" firstAttribute="top" secondItem="FUd-9B-Jha" secondAttribute="top" id="AWX-wJ-sIb"/>
+                            <constraint firstAttribute="trailing" secondItem="ked-Uj-AG6" secondAttribute="trailing" id="UPi-bN-r4D"/>
+                            <constraint firstItem="yhV-Rz-402" firstAttribute="top" secondItem="ked-Uj-AG6" secondAttribute="bottom" id="Vng-OE-cb8"/>
+                            <constraint firstItem="ked-Uj-AG6" firstAttribute="leading" secondItem="FUd-9B-Jha" secondAttribute="leading" id="tU1-6J-0sH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonSend" destination="dWH-71-e5P" id="7Qe-wa-Nc7"/>
+                        <outlet property="buttonStar1" destination="dcT-pW-dLL" id="fQf-mg-MRj"/>
+                        <outlet property="buttonStar2" destination="rJP-8E-SRv" id="nDm-lY-Wrc"/>
+                        <outlet property="buttonStar3" destination="136-cX-GW6" id="zEd-tm-gt9"/>
+                        <outlet property="buttonStar4" destination="afI-ch-fZl" id="cFa-S9-PAe"/>
+                        <outlet property="buttonStar5" destination="f1A-Gr-jZN" id="ofX-5H-Xek"/>
+                        <outlet property="textViewMessage" destination="OCu-Ul-SWK" id="Ybm-dF-ayz"/>
+                        <outlet property="viewContent" destination="BHI-ES-P83" id="hge-rC-1aY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5sA-br-Thm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2240.8000000000002" y="135.38230884557723"/>
+        </scene>
     </scenes>
 </document>

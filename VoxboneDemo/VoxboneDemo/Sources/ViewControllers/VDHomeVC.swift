@@ -164,6 +164,12 @@ class VDHomeVC: UIViewController {
             VDVoxboneManager.shared.hangup(onCallDisconnected: { (callId: String!, headers: [AnyHashable : Any]!) in
                 self.isOnCall = false
                 self.updateButtonsForCallState()
+                
+                if let callEndedVC = self.storyboard?.instantiateViewController(withIdentifier: "VDCallEndedVC") {
+                    callEndedVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                    self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.currentContext
+                    self.navigationController?.present(callEndedVC, animated: true, completion: nil)
+                }
             })
             return
         }
@@ -177,6 +183,12 @@ class VDHomeVC: UIViewController {
                 }, onCallDisconnected: { (VDOnCallDisconnectedHandler) in
                     self.isOnCall = false
                     self.updateButtonsForCallState()
+                    
+                    if let callEndedVC = self.storyboard?.instantiateViewController(withIdentifier: "VDCallEndedVC") {
+                        callEndedVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                        self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.currentContext
+                        self.navigationController?.present(callEndedVC, animated: true, completion: nil)
+                    }
                 }, onCallRinging: { (VDOnCallRingingHandler) in
                     
                 }, onCallFailed: { (callId: String, code: Int32, reason: String, headers: [AnyHashable : Any]) in
