@@ -58,6 +58,8 @@ open class Voxbone: NSObject {
                     static let url = "url"
                     static let rating = "rating"
                     static let comment = "comment"
+                    static let tokenuser = "tokenuser"
+                    static let tokenpassword = "tokenpassword"
                 }
                 struct ParameterValue {
                     static let processAuthData = "voxbone.WebRTC.processAuthData"
@@ -318,7 +320,7 @@ open class Voxbone: NSObject {
     open func createVoxboneCall(_ to: String!) -> String! {
         var customData = ""
         if !self.username.isEmpty, !self.password.isEmpty {
-            customData = "{\"\(Constants.Voxbone.API.Parameter.username)\":\"\(self.username)\",\"\(Constants.Voxbone.API.Parameter.key)\":\"\(self.password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
+            customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(self.username)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(self.password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
             print(customData)
         }
         return voxImplant.createCall(to, withVideo: false, andCustomData: customData)
