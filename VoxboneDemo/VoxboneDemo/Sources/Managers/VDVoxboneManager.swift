@@ -92,7 +92,8 @@ class VDVoxboneManager: NSObject {
     public func login(_ username: String, _ password: String, onLoginSuccessful successful: VDOnLoginSuccessfulHandler?, onLoginFailed failed: VDOnLoginFailedHandler?) {
         loginSuccessful = successful
         loginFailed = failed
-        voxbone.loginToVoxbone(withUsername: username, andPassword: password)
+        var usernameArr = username.characters.split{$0 == "@"}.map(String.init)
+        voxbone.loginToVoxbone(withUsername: usernameArr[0], andAppName: usernameArr[1], andPassword: password)
     }
     
     public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {

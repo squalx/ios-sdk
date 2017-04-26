@@ -31,10 +31,9 @@ struct VDConstants {
     
     struct Voxbone {
         struct Credentials {
-            static let username = "workshopdev" //WebRTC Username
-            static let password = "SnJ7Tk7x*rpS" //WebRTC Password
-            static let apiUser = "techrrific" //Voximplant Username
-            static let apiKey = "SPH154#K5QIv" //Voximplant password
+            static let apiKey = "test1" //VoxImplant username
+            static let apiSecret = "123456" //VoxImplant password
+            static let appName = "voxbonedemo" //VoxImplant app name
         }
     }
 }

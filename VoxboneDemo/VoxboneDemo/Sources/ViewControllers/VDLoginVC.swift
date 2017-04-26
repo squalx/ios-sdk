@@ -30,8 +30,8 @@ class VDLoginVC: UIViewController {
         buttonConnect.clipsToBounds = true
         buttonConnect.layer.cornerRadius = 5
         
-        textFieldUsername.text = VDConstants.Voxbone.Credentials.username
-        textFieldPassword.text = VDConstants.Voxbone.Credentials.password
+        textFieldUsername.text = "\(VDConstants.Voxbone.Credentials.apiKey)@\(VDConstants.Voxbone.Credentials.appName)"
+        textFieldPassword.text = VDConstants.Voxbone.Credentials.apiSecret
         
         checkRecordPermission()
     }
