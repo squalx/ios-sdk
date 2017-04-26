@@ -153,14 +153,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Voxbone * _N
 - (void)connect:(BOOL)connectivityCheck;
 - (void)connectTo:(NSString * _Null_unspecified)host;
 - (void)closeConnection;
-- (void)loginToVoxboneWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
+- (void)loginToVoxboneWithUsername:(NSString * _Null_unspecified)user andAppName:(NSString * _Null_unspecified)appName andPassword:(NSString * _Null_unspecified)password;
 - (void)basicLoginToVoxboneWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
 - (void)postRatingToVoxbone:(NSString * _Nonnull)callId withPhone:(NSString * _Nonnull)phone andRating:(NSNumber * _Nonnull)rating andComments:(NSString * _Nonnull)comments andResponse:(void (^ _Nullable)(NSString * _Nullable, NSError * _Nullable))ratingResponse;
-- (void)loginWithUsername:(NSString * _Null_unspecified)user andPassword:(NSString * _Null_unspecified)password;
-- (void)loginWithUsername:(NSString * _Null_unspecified)user andOneTimeKey:(NSString * _Null_unspecified)hash;
-- (void)loginWithUsername:(NSString * _Null_unspecified)user andToken:(NSString * _Null_unspecified)token;
-- (void)refreshTokenWithUsername:(NSString * _Null_unspecified)user andToken:(NSString * _Null_unspecified)token;
-- (void)requestOneTimeKeyWithUsername:(NSString * _Null_unspecified)user;
 - (NSString * _Null_unspecified)createVoxboneCall:(NSString * _Null_unspecified)to SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Null_unspecified)createCall:(NSString * _Null_unspecified)to withVideo:(BOOL)video andCustomData:(NSString * _Null_unspecified)customData SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)startCall:(NSString * _Null_unspecified)callId withHeaders:(NSDictionary * _Null_unspecified)headers SWIFT_WARN_UNUSED_RESULT;
