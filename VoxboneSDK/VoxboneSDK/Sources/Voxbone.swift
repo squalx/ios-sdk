@@ -26,8 +26,6 @@ open class Voxbone: NSObject {
     fileprivate struct Constants {
         struct Voxbone {
             struct Credentials {
-                //static let username = "test1@voxbonedemo.voxboneworkshop.voximplant.com"
-                //static let password = "123456"
                 static let username = "workshopdev"
                 static let password = "SnJ7Tk7x*rpS"
                 static let appHost = "voxboneworkshop.voximplant.com" //VoxImplant app host
