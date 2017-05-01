@@ -26,8 +26,6 @@ open class Voxbone: NSObject {
     fileprivate struct Constants {
         struct Voxbone {
             struct Credentials {
-                static let username = "workshopdev"
-                static let password = "SnJ7Tk7x*rpS"
                 static let appHost = "voxboneworkshop.voximplant.com" //VoxImplant app host
             }
             struct API {
@@ -314,8 +312,8 @@ open class Voxbone: NSObject {
     
     // MARK: - # Call
     
-    open func createVoxboneCall(_ to: String!) -> String! {
-        let customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(Constants.Voxbone.Credentials.username)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(Constants.Voxbone.Credentials.password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
+    open func createVoxboneCall(_ to: String!, withUsername username: String!, andPassword password: String!) -> String! {
+        let customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(username)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
         print(customData)
         return voxImplant.createCall(to, withVideo: false, andCustomData: customData)
     }
