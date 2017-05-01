@@ -19,6 +19,11 @@ pod install
 
 ## Getting Started:
 
+### Import
+```
+import VoxboneSDK
+```
+
 ### Log Level
 ```
 Voxbone.setLogLevel(.VOXBONE_INFO_LOG_LEVEL)
