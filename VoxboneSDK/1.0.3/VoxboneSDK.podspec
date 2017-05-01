@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   spec.platform = :ios, '9.0'
   spec.ios.deployment_target = '9.0'
   spec.requires_arc = true
-  spec.source = { :git => 'https://github.com/voxbone-workshop/ios-sdk.git', :tag => '#{spec.version}', submodules: true }
+  spec.source = { :git => 'https://github.com/voxbone-workshop/ios-sdk.git', :tag => '1.0.3', submodules: true }
   spec.source_files = 'VoxboneSDK/**/*.{h,swift}'
 
   spec.dependency 'VoxImplantSDK'
