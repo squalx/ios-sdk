@@ -31,6 +31,8 @@ struct VDConstants {
     
     struct Voxbone {
         struct Credentials {
+            static let username = "workshopdev" //Voxbone username
+            static let password = "SnJ7Tk7x*rpS" //Voxbone password
             static let apiKey = "test1" //VoxImplant username
             static let apiSecret = "123456" //VoxImplant password
             static let appName = "voxbonedemo" //VoxImplant app name

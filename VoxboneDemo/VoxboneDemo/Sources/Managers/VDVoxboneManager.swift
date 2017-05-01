@@ -120,7 +120,7 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else {
-            callId = voxbone.createVoxboneCall(phoneNumber!)
+            callId = voxbone.createVoxboneCall(phoneNumber!, withUsername: VDConstants.Voxbone.Credentials.username, andPassword: VDConstants.Voxbone.Credentials.password)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(phoneNumber!) - withCallId: \(callId!)")
             }
