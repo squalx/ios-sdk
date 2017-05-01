@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VoxboneSDK'
-  spec.version = '1.0.4'
+  spec.version = '1.0.5'
   spec.summary = 'VoxboneSDK framework!'
   spec.homepage = 'https://github.com/voxbone-workshop/ios-sdk'
   spec.license = { :type => 'MIT', :file => 'LICENSE' }
