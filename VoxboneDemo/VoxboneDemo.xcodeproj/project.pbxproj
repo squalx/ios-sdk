@@ -13,7 +13,6 @@
 		CA4949C61E718F9C00592D95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4949C41E718F9C00592D95 /* Main.storyboard */; };
 		CA4949CC1E718FAF00592D95 /* VDLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4949CA1E718FAF00592D95 /* VDLoginVC.swift */; };
 		CA4949CF1E718FC300592D95 /* VDAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4949CE1E718FC300592D95 /* VDAppDelegate.swift */; };
-		CA565DC81E806C4E008BCF50 /* VoxboneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA565DCB1E80919E008BCF50 /* VDHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCA1E80919E008BCF50 /* VDHomeVC.swift */; };
 		CA565DCE1E809220008BCF50 /* VDVoxboneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DCD1E809220008BCF50 /* VDVoxboneManager.swift */; };
 		CA565DD11E809B72008BCF50 /* VDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA565DD01E809B72008BCF50 /* VDConstants.swift */; };
@@ -24,7 +23,7 @@
 		CAD381FF1E8BEB42009371B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FE1E8BEB42009371B6 /* UIKit.framework */; };
 		CAD382011E8BED46009371B6 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD382001E8BED46009371B6 /* CallKit.framework */; };
 		CADF6A8B1E6B2F4E00FDDB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */; };
-		CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */; };
+		CAFEB8251EB77125004E5C30 /* VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEB8241EB77125004E5C30 /* VoxboneSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +33,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA565DC81E806C4E008BCF50 /* VoxboneSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +60,7 @@
 		CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CADF6A961E6B346000FDDB45 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VoxboneSDK.framework; path = "../../../../Users/jero/Library/Developer/Xcode/DerivedData/Voxbone-cbaopszigjhtnybqahcxkaujnkdi/Build/Products/Debug-iphoneos/VoxboneSDK.framework"; sourceTree = "<group>"; };
-		CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VoxboneSDK.framework; sourceTree = "<group>"; };
+		CAFEB8241EB77125004E5C30 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VoxboneSDK.framework; sourceTree = "<group>"; };
 		EE18FAB2C312AA8DF468C1A7 /* Pods-VoxboneDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoxboneDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,8 +73,8 @@
 				CAD381FF1E8BEB42009371B6 /* UIKit.framework in Frameworks */,
 				CAD381FD1E8BEB3B009371B6 /* Foundation.framework in Frameworks */,
 				CAD381FB1E8BEB33009371B6 /* AVFoundation.framework in Frameworks */,
-				CAF065F61E6EBDCE0056CC51 /* VoxboneSDK.framework in Frameworks */,
 				27F585E4196552EDBBB7D015 /* Pods_VoxboneDemo.framework in Frameworks */,
+				CAFEB8251EB77125004E5C30 /* VoxboneSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +202,7 @@
 		CAF065F41E6EBDCE0056CC51 /* VoxboneSDK */ = {
 			isa = PBXGroup;
 			children = (
-				CAF065F51E6EBDCE0056CC51 /* VoxboneSDK.framework */,
+				CAFEB8241EB77125004E5C30 /* VoxboneSDK.framework */,
 			);
 			path = VoxboneSDK;
 			sourceTree = "<group>";
@@ -324,7 +322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

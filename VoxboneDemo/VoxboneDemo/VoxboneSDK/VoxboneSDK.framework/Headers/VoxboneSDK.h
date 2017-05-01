@@ -6,9 +6,7 @@
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <VoxImplant/VoxImplant.h>
-#import <VoxImplant/VoxImplantDelegate.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for VoxboneSDK.
 FOUNDATION_EXPORT double VoxboneSDKVersionNumber;
