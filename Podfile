@@ -17,8 +17,5 @@ end
 
 target 'VoxboneDemo' do
     project 'VoxboneDemo/VoxboneDemo.xcodeproj'
-    pod 'VoxImplantSDK'
-    pod 'Alamofire'
-    pod 'SwiftyJSON'
-    pod 'Flurry-iOS-SDK/FlurrySDK'
+    pod 'VoxboneSDK'
 end

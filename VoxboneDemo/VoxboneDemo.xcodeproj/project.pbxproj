@@ -23,7 +23,6 @@
 		CAD381FF1E8BEB42009371B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD381FE1E8BEB42009371B6 /* UIKit.framework */; };
 		CAD382011E8BED46009371B6 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD382001E8BED46009371B6 /* CallKit.framework */; };
 		CADF6A8B1E6B2F4E00FDDB45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */; };
-		CAFEB8251EB77125004E5C30 /* VoxboneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEB8241EB77125004E5C30 /* VoxboneSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,7 +59,6 @@
 		CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CADF6A961E6B346000FDDB45 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VoxboneSDK.framework; path = "../../../../Users/jero/Library/Developer/Xcode/DerivedData/Voxbone-cbaopszigjhtnybqahcxkaujnkdi/Build/Products/Debug-iphoneos/VoxboneSDK.framework"; sourceTree = "<group>"; };
-		CAFEB8241EB77125004E5C30 /* VoxboneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VoxboneSDK.framework; sourceTree = "<group>"; };
 		EE18FAB2C312AA8DF468C1A7 /* Pods-VoxboneDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoxboneDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-VoxboneDemo/Pods-VoxboneDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +72,6 @@
 				CAD381FD1E8BEB3B009371B6 /* Foundation.framework in Frameworks */,
 				CAD381FB1E8BEB33009371B6 /* AVFoundation.framework in Frameworks */,
 				27F585E4196552EDBBB7D015 /* Pods_VoxboneDemo.framework in Frameworks */,
-				CAFEB8251EB77125004E5C30 /* VoxboneSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +176,6 @@
 			children = (
 				CA4949C11E718F4600592D95 /* Sources */,
 				CA4949C21E718F4C00592D95 /* Storyboards */,
-				CAF065F41E6EBDCE0056CC51 /* VoxboneSDK */,
 				CADF6A8A1E6B2F4E00FDDB45 /* Assets.xcassets */,
 				CADF6A8F1E6B2F4E00FDDB45 /* Info.plist */,
 			);
@@ -197,14 +193,6 @@
 				4654D0AEA9076778EBD02835 /* Pods_VoxboneDemo.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CAF065F41E6EBDCE0056CC51 /* VoxboneSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAFEB8241EB77125004E5C30 /* VoxboneSDK.framework */,
-			);
-			path = VoxboneSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,10 +434,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				DEVELOPMENT_TEAM = B27972CSZ6;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/VoxboneDemo/VoxboneSDK",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VoxboneDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voxbone.VoxboneDemo;
@@ -467,10 +452,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				DEVELOPMENT_TEAM = B27972CSZ6;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/VoxboneDemo/VoxboneSDK",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VoxboneDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voxbone.VoxboneDemo;
