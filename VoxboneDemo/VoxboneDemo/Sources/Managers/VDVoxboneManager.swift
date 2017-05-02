@@ -279,7 +279,7 @@ extension VDVoxboneManager: CXProviderDelegate {
         if action.callUUID == outgoingCall {
             startCallAction = action
             provider.reportOutgoingCall(with: action.callUUID, startedConnectingAt: nil)
-            callId = voxbone.createVoxboneCall(action.handle.value)
+            callId = voxbone.createVoxboneCall(action.handle.value, withUsername: VDConstants.Voxbone.Credentials.username, andPassword: VDConstants.Voxbone.Credentials.password)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(action.handle.value) - withCallId: \(callId!)")
             }
