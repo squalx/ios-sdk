@@ -28,7 +28,7 @@ extension Voxbone: VoxImplantDelegate {
     
     public func onLoginSuccessful(withDisplayName displayName: String!, andAuthParams authParams: [AnyHashable : Any]!) {
         Flurry.logEvent(Constants.Flurry.Event.userSession, timed: true)
-        voxboneDelegate.onLoginSuccessful?(withDisplayName: username, andAuthParams: authParams)
+        voxboneDelegate.onLoginSuccessful?(withDisplayName: user, andAuthParams: authParams)
     }
     
     public func onLoginFailedWithErrorCode(_ errorCode: NSNumber!) {

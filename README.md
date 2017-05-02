@@ -42,7 +42,7 @@ voxbone.connect(false)
 
 ### Login action
 ```
-voxbone.loginToVoxbone(withUsername: "your username", andAppName: "your app name", andPassword: "your password")
+voxbone.loginToVoxbone(withUsername: "your username", andPassword: "your password", andUser: "your user", andAppName: "your app name", andSecret: "your secret")
 ```
 
 ### Start Call action

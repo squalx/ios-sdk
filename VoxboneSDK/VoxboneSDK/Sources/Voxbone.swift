@@ -90,6 +90,8 @@ open class Voxbone: NSObject {
     var voxboneDelegate: VoxboneDelegate!
     var username: String = ""
     var password: String = ""
+    var user: String = ""
+    var secret: String = ""
     var appName: String = ""
     
     // MARK: - # Singleton
@@ -150,9 +152,11 @@ open class Voxbone: NSObject {
     
     // MARK: - # Login
     
-    open func loginToVoxbone(withUsername user: String!, andAppName appName: String!, andPassword password: String!) {
-        self.username = user
+    open func loginToVoxbone(withUsername username: String!, andPassword password: String!, andUser user: String!, andAppName appName: String!, andSecret secret: String!) {
+        self.username = username
         self.password = password
+        self.user = user
+        self.secret = secret
         self.appName = appName
         
         Alamofire.request(Constants.Voxbone.API.Url.tokenGenerator, method: .get, parameters: nil, encoding: URLEncoding.queryString, headers: nil)
@@ -208,7 +212,7 @@ open class Voxbone: NSObject {
                             if let log = json[Constants.Voxbone.API.Parameter.log].arrayObject as? [String], let logUrl = log.first {
                                 self.voxboneLogUrl = logUrl
                             }
-                            self.login(withUsername: "\(self.username)@\(self.appName).\(Constants.Voxbone.Credentials.appHost)", andPassword: self.password)
+                            self.login(withUsername: "\(self.user)@\(self.appName).\(Constants.Voxbone.Credentials.appHost)", andPassword: self.secret)
                         }
                     }
                 } else if let error = response.error as NSError? {
@@ -221,13 +225,16 @@ open class Voxbone: NSObject {
         }
     }
     
-    open func basicLoginToVoxbone(withUsername user: String!, andPassword password: String!) {
-        self.username = user
+    open func basicLoginToVoxbone(withUsername username: String!, andPassword password: String!, andUser user: String!, andAppName appName: String!, andSecret secret: String!) {
+        self.username = username
         self.password = password
+        self.user = user
+        self.secret = secret
+        self.appName = appName
         
         let headers = [Constants.Voxbone.API.Header.contentType: Constants.Voxbone.API.HeaderValue.applicationFormUrlEncoded,
                        Constants.Voxbone.API.Header.charset: Constants.Voxbone.API.HeaderValue.utf8]
-        let parameters: Parameters = [Constants.Voxbone.API.Parameter.username: user,
+        let parameters: Parameters = [Constants.Voxbone.API.Parameter.username: username,
                                       Constants.Voxbone.API.Parameter.key: password,
                                       Constants.Voxbone.API.Parameter.timestamp: String(Date().ticks),
                                       Constants.Voxbone.API.Parameter.jsonp: Constants.Voxbone.API.ParameterValue.processAuthData]
@@ -254,7 +261,7 @@ open class Voxbone: NSObject {
                             if let log = json[Constants.Voxbone.API.Parameter.log].arrayObject as? [String], let logUrl = log.first {
                                 self.voxboneLogUrl = logUrl
                             }
-                            self.login(withUsername: "\(self.username)@\(self.appName).\(Constants.Voxbone.Credentials.appHost)", andPassword: self.password)
+                            self.login(withUsername: "\(self.user)@\(self.appName).\(Constants.Voxbone.Credentials.appHost)", andPassword: self.secret)
                         }
                     }
                 } else if let error = response.error as NSError? {
@@ -312,8 +319,8 @@ open class Voxbone: NSObject {
     
     // MARK: - # Call
     
-    open func createVoxboneCall(_ to: String!, withUsername username: String!, andPassword password: String!) -> String! {
-        let customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(username)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
+    open func createVoxboneCall(_ to: String!) -> String! {
+        let customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(self.username)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(self.password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
         print(customData)
         return voxImplant.createCall(to, withVideo: false, andCustomData: customData)
     }

@@ -89,11 +89,11 @@ class VDVoxboneManager: NSObject {
         voxbone.closeConnection()
     }
     
-    public func login(_ username: String, _ password: String, onLoginSuccessful successful: VDOnLoginSuccessfulHandler?, onLoginFailed failed: VDOnLoginFailedHandler?) {
+    public func login(_ user: String, _ secret: String, onLoginSuccessful successful: VDOnLoginSuccessfulHandler?, onLoginFailed failed: VDOnLoginFailedHandler?) {
         loginSuccessful = successful
         loginFailed = failed
-        var usernameArr = username.characters.split{$0 == "@"}.map(String.init)
-        voxbone.loginToVoxbone(withUsername: usernameArr[0], andAppName: usernameArr[1], andPassword: password)
+        var usernameArr = user.characters.split{$0 == "@"}.map(String.init)
+        voxbone.loginToVoxbone(withUsername: VDConstants.Voxbone.Credentials.username, andPassword: VDConstants.Voxbone.Credentials.password, andUser: usernameArr[0], andAppName: usernameArr[1], andSecret: secret)
     }
     
     public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {
@@ -120,7 +120,7 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else {
-            callId = voxbone.createVoxboneCall(phoneNumber!, withUsername: VDConstants.Voxbone.Credentials.username, andPassword: VDConstants.Voxbone.Credentials.password)
+            callId = voxbone.createVoxboneCall(phoneNumber!)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(phoneNumber!) - withCallId: \(callId!)")
             }
@@ -279,7 +279,7 @@ extension VDVoxboneManager: CXProviderDelegate {
         if action.callUUID == outgoingCall {
             startCallAction = action
             provider.reportOutgoingCall(with: action.callUUID, startedConnectingAt: nil)
-            callId = voxbone.createVoxboneCall(action.handle.value, withUsername: VDConstants.Voxbone.Credentials.username, andPassword: VDConstants.Voxbone.Credentials.password)
+            callId = voxbone.createVoxboneCall(action.handle.value)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(action.handle.value) - withCallId: \(callId!)")
             }
