@@ -17,5 +17,5 @@ end
 
 target 'VoxboneDemo' do
     project 'VoxboneDemo/VoxboneDemo.xcodeproj'
-    pod 'VoxboneSDK', :git => 'https://github.com/voxbone-workshop/ios-sdk'
+    pod 'VoxboneSDK'
 end
