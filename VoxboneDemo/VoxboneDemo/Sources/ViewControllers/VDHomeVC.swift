@@ -197,7 +197,7 @@ class VDHomeVC: UIViewController {
                     self.presentPopupAlertForCallFailed(reason)
                 }, onCallAudioStarted: { (VDOnCallAudioStartedHandler) in
                 
-            })
+            }, callerId: "Tester")
         }
     }
     

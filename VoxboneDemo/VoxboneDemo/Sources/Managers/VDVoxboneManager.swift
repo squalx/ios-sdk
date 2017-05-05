@@ -71,7 +71,7 @@ class VDVoxboneManager: NSObject {
         provider = CXProvider(configuration: type(of: self).providerConfiguration)
         super.init()
         
-        Voxbone.setLogLevel(.VOXBONE_INFO_LOG_LEVEL)
+        Voxbone.setLogLevel(.VOXBONE_DEBUG_LOG_LEVEL)
         voxbone.setVoxboneDelegate(delegate: self)
         
         provider.setDelegate(self, queue: nil)
@@ -96,7 +96,7 @@ class VDVoxboneManager: NSObject {
         voxbone.loginToVoxbone(withUsername: VDConstants.Voxbone.Credentials.username, andPassword: VDConstants.Voxbone.Credentials.password, andUser: usernameArr[0], andAppName: usernameArr[1], andSecret: secret)
     }
     
-    public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?) {
+    public func call(to: String, onCallConnected connected: VDOnCallConnectedHandler?, onCallDisconnected disconnected: VDOnCallDisconnectedHandler?, onCallRinging ringing: VDOnCallRingingHandler?, onCallFailed failed: VDOnCallFailedHandler?, onCallAudioStarted audioStarted: VDOnCallAudioStartedHandler?, callerId:String?) {
         
         cleanCall()
         callConnected = connected
@@ -120,7 +120,8 @@ class VDVoxboneManager: NSObject {
                 }
             }
         } else {
-            callId = voxbone.createVoxboneCall(phoneNumber!)
+
+            callId = voxbone.createVoxboneCall(phoneNumber!, callerId: callerId!)
             if callId != nil, voxbone.attachAudio(to: callId!), voxbone.startCall(callId!, withHeaders: nil) {
                 print("calling to \(phoneNumber!) - withCallId: \(callId!)")
             }
