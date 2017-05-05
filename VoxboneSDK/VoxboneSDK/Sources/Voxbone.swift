@@ -2,7 +2,6 @@
 //  Voxbone.swift
 //  VoxboneSDK
 //
-//  Created by Jerónimo Valli on 3/4/17.
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
@@ -26,7 +25,7 @@ open class Voxbone: NSObject {
     fileprivate struct Constants {
         struct Voxbone {
             struct Credentials {
-                static let appHost = "voxboneworkshop.voximplant.com" //VoxImplant app host
+                static let appHost = "voxboneworkshop.voximplant.com" //default app host - do not change
             }
             struct API {
                 struct Url {
@@ -320,7 +319,7 @@ open class Voxbone: NSObject {
     // MARK: - # Call
     
     open func createVoxboneCall(_ to: String!) -> String! {
-        let customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(self.username)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(self.password)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
+        let customData = "{\"\(Constants.Voxbone.API.Parameter.tokenuser)\":\"\(self.voxboneUsername)\",\"\(Constants.Voxbone.API.Parameter.tokenpassword)\":\"\(self.voxbonePassword)\",\"\(Constants.Voxbone.API.Parameter.context)\":\"\(Constants.Voxbone.API.ParameterValue.string)\"}"
         print(customData)
         return voxImplant.createCall(to, withVideo: false, andCustomData: customData)
     }

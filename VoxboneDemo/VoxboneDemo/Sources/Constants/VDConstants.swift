@@ -2,7 +2,6 @@
 //  VDConstants.swift
 //  VoxboneDemo
 //
-//  Created by Jerónimo Valli on 3/20/17.
 //  Copyright © 2017 Voxbone. All rights reserved.
 //
 
@@ -31,11 +30,11 @@ struct VDConstants {
     
     struct Voxbone {
         struct Credentials {
-            static let username = "workshopdev" //Voxbone username
-            static let password = "SnJ7Tk7x*rpS" //Voxbone password
-            static let apiKey = "test1" //VoxImplant username
-            static let apiSecret = "123456" //VoxImplant password
-            static let appName = "voxbonedemo" //VoxImplant app name
+            static let username = "WebRTCUsername" //Your Voxbone WebRTC username
+            static let password = "WebRTCPassword" //Your Voxbone WebRTC Password. Go to https://www.voxbone.com/portal/account-settings?tab=webRTC to setup
+            static let apiKey = "YourAPIKey" //Your iOS API username/key
+            static let apiSecret = "YourAPISecret" //Your iOS API secret, provided by Voxbone. Please contact workshop@voxbone.com for access
+            static let appName = "YourAppName" //Your iOS App Name
         }
     }
 }
