@@ -52,6 +52,8 @@ open class Voxbone: NSObject {
                     static let tokenuser = "tokenuser"
                     static let tokenpassword = "tokenpassword"
                     static let callerId = "callerId"
+                    static let logStashPayloadType = "payload_type"
+                    static let ratingPayloadType = "webrtc_call_rating"
                 }
                 struct ParameterValue {
                     static let processAuthData = "voxbone.WebRTC.processAuthData"
@@ -283,6 +285,7 @@ open class Voxbone: NSObject {
                                       Constants.Voxbone.API.Parameter.rating: rating,
                                       Constants.Voxbone.API.Parameter.comment: comments,
                                       Constants.Voxbone.API.Parameter.url: "iOSVoxboneSDK",
+                                      Constants.Voxbone.API.Parameter.logStashPayloadType: Constants.Voxbone.API.Parameter.ratingPayloadType,
                                       Constants.Voxbone.API.Parameter.jsonp: Constants.Voxbone.API.ParameterValue.processAuthData]
         
         Alamofire.request(voxboneLogUrl, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
