@@ -30,7 +30,6 @@ open class Voxbone: NSObject {
             struct API {
                 struct Url {
                     static let basicToken = "https://cdn.voxbone.com/authentication/basicToken"
-                    static let tokenGenerator = "https://voxbone-auth.herokuapp.com/auth-json.php"
                     static let createToken = "https://cdn.voxbone.com/authentication/createToken"
                     static let log = "https://webrtc.voxbone.com/cgi-bin/post_logs.pl"
                 }
@@ -152,14 +151,14 @@ open class Voxbone: NSObject {
     
     // MARK: - # Login
     
-    open func loginToVoxbone(withUsername username: String!, andPassword password: String!, andUser user: String!, andAppName appName: String!, andSecret secret: String!) {
+    open func loginToVoxbone(withUsername username: String!, andPassword password: String!, andUser user: String!, andAppName appName: String!, andSecret secret: String!, withAuthServer authServerURL:String!) {
         self.username = username
         self.password = password
         self.user = user
         self.secret = secret
         self.appName = appName
         
-        Alamofire.request(Constants.Voxbone.API.Url.tokenGenerator, method: .get, parameters: nil, encoding: URLEncoding.queryString, headers: nil)
+        Alamofire.request(authServerURL, method: .get, parameters: nil, encoding: URLEncoding.queryString, headers: nil)
             .response { response in
                 
                 if let data = response.data {

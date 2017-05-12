@@ -35,6 +35,7 @@ struct VDConstants {
             static let apiKey = "YourAPIKey" //Your iOS API username/key
             static let apiSecret = "YourAPISecret" //Your iOS API secret, provided by Voxbone. Please contact workshop@voxbone.com for access
             static let appName = "YourAppName" //Your iOS App Name
+            //static let authServerURL = "AuthServerURL" //(OPTIONAL) Your auth URL. In case you are running your own authentication server. Refer to https://developers.voxbone.com/docs/webrtc/get-started/ on how.
         }
     }
 }
