@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.source_files = 'VoxboneSDK/**/*.{h,swift}'
 
   spec.frameworks = 'Foundation'
-  spec.dependency 'VoxImplantSDK'
+  #spec.dependency 'VoxImplantSDK'
   spec.dependency 'Alamofire'
   spec.dependency 'SwiftyJSON'
   spec.dependency 'Flurry-iOS-SDK/FlurrySDK'
